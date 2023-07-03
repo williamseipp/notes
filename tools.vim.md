@@ -4,8 +4,3 @@
 ```
 :%s/foo/bar/g
 ```
-
-### useful command examples
-
-**copypasta**
-
