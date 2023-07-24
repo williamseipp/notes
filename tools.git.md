@@ -1,3 +1,15 @@
+good commit messages explain WHY a change was made
+however, a branching strategy is necessary to provide
+larger context.
+
+For example, "add flexibile loan duration" describes a
+feature that was made. This should actually be a branch
+name.
+
+
+
+
+
 git is a CLI tool for managing changing code
 think of it as "saving"
 

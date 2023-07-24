@@ -1,7 +1,6 @@
 ### topic
 
-**copypasta**
-```
+```ruby
 code
 ```
 

@@ -1,6 +1,11 @@
 ### useful command examples
 
-**find and replace**
+**search and replace**
 ```
 :%s/foo/bar/g
+```
+
+**search for word under cursor**
+```
+* in normal mode
 ```
