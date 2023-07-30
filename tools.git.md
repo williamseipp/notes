@@ -45,3 +45,10 @@ git fetch and git "fast-forward merge" in one command
 ** git clone https://github.com/williamseipp/notes.git **
 creates a copy of remote locally and automatically
 sets upstream to remote
+
+## configure name, email, credentials
+
+git config --global user.name "name"
+git config --global user.email "email"
+git config --global user.helper cache
+git config --global user.helper store
