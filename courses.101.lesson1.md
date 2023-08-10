@@ -1,3 +1,4 @@
+{{{ lesson1 
 ### Preparations
 
 Being social has many benefits, so get started early. Ask specific questions
@@ -29,3 +30,22 @@ def string_lengths(sentence)
   end
 end
 ```
+}}}
+{{{ lesson3 
+
+{{{ easy1
+}}}
+
+{{{ easy2
+}}}
+
+{{{ medium1
+}}}
+
+{{{ medium2
+}}}
+{{{ hard1
+}}}
+
+
+}}}

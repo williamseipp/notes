@@ -1,3 +1,152 @@
+{{{                             GIT
+
+## setup
+## creating a repository
+## tracking change
+## configure name, email, credentials
+
+
+## setup
+
+`git config --global user.name "name"`
+`git config --global user.email "email"`
+
+`git config --global user.helper cache`
+`git config --global user.helper store`
+
+
+## creating a repository
+
+`git init`                  turn a folder into a git "repo"
+
+`git remote add origin remote.git`
+add remote.git as a remote repository with the alias "origin"
+
+`git clone 'remote_repo'`
+creates a copy of remote_repo locally, sets upstream to remote_repo
+
+`git add filename`
+
+`git commit -m message`     
+commits staged files with message
+
+
+## tracking change
+`git status`
+
+
+`git log`
+shows commit history
+
+`git diff 'file_name`
+show differences between saved/unsaved versions of 'file_name'
+
+`git push -u origin main`
+tells git to track remote repository "origin/main" 
+and use it for push,pull
+
+`git diff origin/main main`
+compare a modified local repo to the original remote
+
+`git fetch`
+downloads from a remote, but doesnt commit those changes
+
+`git pull --ff-only`
+git fetch and git "fast-forward merge" in one command
+
+}}}
+{{{   VIM
+
+## search and replace
+
+:%s/foo/bar/g
+
+## search for word under cursor
+
+* in normal mode
+
+## word wrap
+
+gqj
+
+## folding
+
+`za` to close fold
+{{{     hello world     
+}}}
+
+and some other text
+}}}
+{{{ APT
+
+apt-get update
+  gets updated package list for distro or 3rd party repos
+  DOES NOT download or install
+
+
+apt-get upgrade
+
+}}}
+{{{ MARKDOWN
+
+### this is a header of size 3
+**bold** and _italics_ are easy
+
+
+paragraphs are created with 2  
+spaces at the end  
+of each line  
+
+[inline links are easy](www.google.com)
+[reference link][search]
+[search]: www.google.com
+
+![cat][URL_to_image.png]
+
+> "block quotes are easy"
+>
+>   the easiest thing ever
+
+* eggs
+* milk
+* pastry dough
+ * flour
+ * water
+
+1. break the egg
+2. pour a cup of milk
+3. stir vigorously
+
+
+
+}}}
+{{{ PRY
+
+```ruby
+require 'pry'
+
+binding.pry
+```
+
+binding.pry is a breakpoint
+}}}
+{{{  ZOOM
+# installing zoom
+
+(select mint 64-bit)[https://zoom.us/download?os=linux]
+sudo apt install ./zoom_amd64.deb
+
+# launching zoom
+
+launch with dmenu
+
+# testing your video
+
+profile picture.settings.video_tab
+
+}}}
+{{{    PEDAC
+
 PEDAC Template
 ==============
 
@@ -168,3 +317,31 @@ Code
 ----
 
 =end
+}}}
+{{{
+
+}}}
+{{{
+
+}}}
+{{{
+
+}}}
+{{{
+
+}}}
+{{{
+
+}}}
+{{{
+
+}}}
+{{{
+
+}}}
+{{{
+
+}}}
+{{{
+
+}}}

@@ -1,3 +1,5 @@
+{{{ variable_references_and_mutability_of_ruby_objects
+
 ### Intro
 
     Variables and references can behave unexpectedly;
@@ -129,3 +131,4 @@ puts word               # abc*
 >> Immutable objects in Ruby may be passed by reference but as they
 >> can't change, the effect is that of "pass by value"
 
+}}}

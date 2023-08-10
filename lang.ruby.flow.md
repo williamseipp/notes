@@ -6,3 +6,8 @@ when 0
 when 100
   puts "all filled up!"
 end
+
+
+
+## conditionals
+## loops
