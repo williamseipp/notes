@@ -1,34 +1,80 @@
 ## TOPICS
 
+**step-by-step process for answering questions**
+
+1. RUN the code
+2. WRITE down output
+3. COMMENT relevant lines in English 
+4. ANSWER the question in this order:
+    * HOW did input change?
+    * WHAT is the result?
+    * WHY did this happen?
+
+**big question**
+What level of detail is required for answering questions?
+
+On one hand, the [study_guide](https://launchschool.com/lessons/278c95b6/assignments/37d88bff)
+provides this example:
+{{{ example with A, B, C, and D answers 
+
+```ruby
+
+greeting = 'Hello'
+# The local variable greeting is assigned to the String 'Hello'
+
+loop do         # The do/end that follows the loop method invocation is a block
+  greeting = 'Hi' # Greeting is reassigned to 'Hi'
+  break
+end
+
+puts greeting   # puts is called with the value of the variable greeting passed
+                # to it as an argument and since greeting was reassigned to
+                # Hi, that is the output
+```
+The local variable `greeting` is assigned to the String `'Hello'` on line 1.
+The `do..end` alongside the loop method invocation on lines 3 to 6 defines a
+block, within which `greeting` is reassigned to the String `Hi` on line 4. The
+`puts` method is called on line 8 with the value of the variable `greeting`
+passed to it as an argument; since `greeting` is now assigned to `'Hi'`, this
+is what is output. 
+
+This example demonstrates local variable scoping rules in
+Ruby; specifically the fact that a local variable initialized outside of a
+block is accessible inside the block.
+
+* local variable `greeting`
+* `greeting`
+* variable `greeting`
+* `greeting`
+
+}}}
+
+
+
+
+
 {{{   FIGURE THIS OUT
 
 Q: how does the book explain the process by which arguments to a method call
-    become bound to method parameter names
+become bound to method parameter names
 
 A: "We start by passing `var_name` to `method_name`; this binds the object
-    referenced by `var_name` (`object`) to `param_name`.
-    `variable` and `param_name` are now aliases for the object.
+referenced by `var_name` (`object`) to `param_name`. `variable` and
+`param_name` are now aliases for the object.
 
 We start by passing `s` to `fix`; this binds the String represented by
 `'hello'` to `value`. In addition, `s` and `value` are now aliases for the
 String.
 
-A: read the pass-by-value / reference articles as they
-    go over this method passing many times
-(ruby object's mutating and non-mutating methods)
+A: read the pass-by-value / reference articles as they go over this method
+passing many times (ruby object's mutating and non-mutating methods)
 [https://launchschool.medium.com/ruby-objects-mutating-and-non-mutating-methods-78023d849a5f]
 
-Q: how would i explain what is happening in the below example
-    without going over what each iteration of the loop does when
-    its perfectly clear what is happening?
+Q: how would i explain what is happening in the below example without going
+over what each iteration of the loop does when its perfectly clear what is
+happening?
 
-```ruby
-  i = 3
-  loop do
-    puts str
-    i -= 1
-    break if i == 0
-  end
+```ruby i = 3 loop do puts str i -= 1 break if i == 0 end
 
 ```
 
@@ -37,7 +83,7 @@ Q: how do i refer to the `break if`? Is this a conditional statement?
 A:
 
 Q: how do i refer to the `i == 0`? What words would the book use to describe
-    the entire line `break if i == 0`?
+the entire line `break if i == 0`?
 
 A: 
 
