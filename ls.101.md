@@ -132,6 +132,52 @@ online resources: google, stack overflow, documentation
 
 ### precedence is complicated: just use parentheses!
 
+{{{ precedence table
+```ruby
+!, ~, unary +
+
+**
+
+unary -
+
+*, /, %
+
++, -
+
+<<, >>
+
+&
+
+|, ^
+
+>, >=, <, <=
+
+<=>, ==, ===, !=, =~, !~
+
+&&
+
+||
+
+.., ...
+
+?, :
+
+modifier-rescue
+
+=, +=, -=, etc.
+
+defined?
+
+not
+
+or, and
+
+modifier-if, modifier-unless, modifier-while, modifier-until
+
+{ } blocks
+```
+}}}
+
 example 1: 
 
 ```ruby

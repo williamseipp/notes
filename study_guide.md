@@ -1,6 +1,7 @@
 ## TOPICS
 
-**step-by-step process for answering questions**
+# HOW TO ANSWER
+{{{  
 
 1. RUN the code
 2. WRITE down output
@@ -49,11 +50,28 @@ block is accessible inside the block.
 
 }}}
 
+}}}
+
+# LANGUAGE
+{{{ 
+
+"The local variable `X` is initialized within the block, and so it is not
+available in the outer scope."
+
+"The `do/end` following invocation of the `loop` method defines a block
+and the local variable `X` is initialized/reassigned within this block"
+
+"When we reference the variable in the conditional"
+
+}}}
 
 
+## nil
+## puts
+## hashes?
 
-
-{{{   FIGURE THIS OUT
+# FIGURE THIS OUT
+{{{   
 
 Q: how does the book explain the process by which arguments to a method call
 become bound to method parameter names
@@ -89,15 +107,92 @@ A:
 
 }}}
 
-{{{ operators
-numerical
-string
-conditional
-logical
-precedence
+# OPERATORS
+{{{ 
+
+The expressions or values that an operator uses are its **operands**
+`a + b` is `a.+(b)`
+
+# arithmetic
+# comparison
+==
+!=
+<, >, <=, >=, <=>
+
+# assignment
+=
++=
+-=
+*=
+/=      divides left operand with right and assigns result to left
+%=
+**=
+
+# parallel assignment
+a, b, c = 10, 20, 30
+
+# logical
+&&
+||
+!
+!!
+# ternary
+?:
+
+# string
+`first_name + ' Seipp` +  concatenation
+`'hello' *3`  returns a new String containing integer copies of itself 
+
+# precedence table
+{{{ precedence table
+```ruby
+!, ~, unary +
+
+**
+
+unary -
+
+*, /, %
+
++, -
+
+<<, >>
+
+&
+
+|, ^
+
+>, >=, <, <=
+
+<=>, ==, ===, !=, =~, !~
+
+&&
+
+||
+
+.., ...
+
+?, :
+
+modifier-rescue
+
+=, +=, -=, etc.
+
+defined?
+
+not
+
+or, and
+
+modifier-if, modifier-unless, modifier-while, modifier-until
+
+{ } blocks
+```
+
 }}}
 
-{{{ variables
+# VARIABLES
+{{{ 
 constant names
 initialization & reassignment
 as pointers
@@ -105,7 +200,8 @@ variable scope
 varible shadowing
 }}}
 
-{{{ method
+# METHODS
+{{{ 
 definitions
 invocation
 implicit and explicit return values
@@ -117,29 +213,50 @@ mutating
 
 }}}
 
-{{{ expressions and return
+
+# EXPRESSIONS AND RETURN
+{{{ 
 }}}
 
 
-{{{ conditionals & loops
+# CONDITONALS & LOOPS
+{{{ 
+
+
+for
+
+
+while
+
+
+until
+
+unless
+
+
 }}}
 
-{{{ mutability & immutability, constants
+# MUTABILITY
+{{{ 
+mutability 
+& 
+immutability, 
+constants
 }}}
 
-{{{ boolean vs truthiness
+# BOOLEANS vs TRUTHINESS
+{{{ 
 }}}
 
-{{{ strings
+# STRINGS
+{{{ 
 string interpolation
 methods
 }}}
 
-## nil
-## puts
-## hashes?
 
-{{{ arrays
+# ARRAYS
+{{{ 
 properties
 methods
 }}}
@@ -195,23 +312,22 @@ s = 'hello'
 t = fix(s)
 ```
 
-When this code runs, what values do `s` and `t` have and why?
+What does this do and why?
 
-**my answer**
-`s`  is assigned the string `'hello'`
-and this string is passed to the `fix` method as an argument
-The method definition has a parameter `value`; this references the
-same string that `s` references; the String `'hello'`
 
-So, when the mutating method `upcase!` is called, the calling object
-is the String `'hello'` because value references it. This string is
-now `'HELLO'`, until the next line where it calls the `concat` method
-on itself to append a `'!'`, resulting in `HELLO!`
-The last line `value` returns the reference to the mutated string, where
-on the last line the local variable `t` is assigned this reference. Both
-`s` and `t` have the value of `HELLO!`
+how
+On line 7, the local variable `s` is assigned the String `'hello'`
+This value gets passed to `fix` on line 8, and the method parameter
+`value` is bound to the String `'hello'`. This String then calls the `#upcase!`
+method on itself on line 2, changing itself to `HELLO`. On line 3, the same
+String calls the `#concat` method on itself with the String `'!'` as an 
+argument, changing itself to `'HELLO!'`. On line 4, the reference to this
+String is returned by the method, which then gets assigned to the local 
+variable `t`. As a result, both `s` and `t` reference the same String `HELLO!`
 
-**book answer**
+This example demonstrates the concept of pass-by-reference
+
+{{{   **book answer**
 We start by passing `s` to `fix`; this binds the String represented by
 `'hello'` to `value`. In addition, `s` and `value` are now aliases for the
 String.
