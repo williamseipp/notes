@@ -101,8 +101,7 @@ numbers.delete(1)
 
 ```
 
-{{{
-**my answer**
+{{{  **my answer**
 
 delete_at() removes element at specified index from Array and returns it
 delete() deletes elements with specified value from Array and returns the
