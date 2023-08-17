@@ -65,10 +65,8 @@ and the local variable `X` is initialized/reassigned within this block"
 
 }}}
 
-
 ## nil
 ## puts
-## hashes?
 
 # FIGURE THIS OUT
 {{{   
@@ -114,6 +112,12 @@ The expressions or values that an operator uses are its **operands**
 `a + b` is `a.+(b)`
 
 # arithmetic
++
+-
+/
+%
+divmod
+**
 # comparison
 ==
 !=
@@ -140,8 +144,11 @@ a, b, c = 10, 20, 30
 ?:
 
 # string
-`first_name + ' Seipp` +  concatenation
-`'hello' *3`  returns a new String containing integer copies of itself 
++   concatenation: 
+`first_name + ' Seipp`
+
+*   returns a new String containing integer copies of itself 
+`'hello' *3`  
 
 # precedence table
 {{{ precedence table
@@ -190,6 +197,7 @@ modifier-if, modifier-unless, modifier-while, modifier-until
 ```
 
 }}}
+}}}
 
 # VARIABLES
 {{{ 
@@ -211,28 +219,38 @@ call stack
 mutating
 
 
-}}}
 
+}}}
 
 # EXPRESSIONS AND RETURN
 {{{ 
+
+the return keyword explicitly returns a value within a method
+
+def some_method
+  return 42
+end
+
 }}}
 
-
-# CONDITONALS & LOOPS
+# CONDITONALS
 {{{ 
-
 
 for
 
-
-while
-
-
-until
-
 unless
 
+case statements
+
+
+}}}
+
+# LOOPS
+{{{
+
+while
+do/2hil
+until
 
 }}}
 
@@ -248,12 +266,127 @@ constants
 {{{ 
 }}}
 
-# STRINGS
-{{{ 
-string interpolation
+# NUMBERS
+{{{
+integers
+
+floats
+
 methods
+
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 }}}
 
+# STRINGS
+{{{ 
+
+------------------------------------------------------------------------------
+# string interpolation
+requires "" strings
+last_name = 'Seipp'
+puts "Name's #{last_name}, Wiliam #{last_name}}"
+
+------------------------------------------------------------------------------
+# + 
+returns a new String containing other_string concatenated to self
+`'hello' + ' world'`
+
+
+------------------------------------------------------------------------------
+# * 
+returns a new String containing multiple copies of self 
+`puts "#{last_name*3}" => 'SeippSeippSeipp'`
+
+------------------------------------------------------------------------------
+# << 
+concatenates object to self and returns self
+first_name << last_name
+
+------------------------------------------------------------------------------
+# chomp 
+returns a new string copied from self with trailing characters removed
+first_name.chomp
+
+------------------------------------------------------------------------------
+# delete returns a new string copied from self without arguments
+fruit = "apples, bananas, coconuts, oranges, pineapples"
+fruit.delete('o')
+fruit # => "apples, bananas, ccnuts, ranges, pineapples"
+
+------------------------------------------------------------------------------
+# sub 
+returns a copy of self with the first occurence of the given pattern replaced
+
+pets = 'cat cat dog'
+pets.sub('cat', 'fish')
+'fish cat dog'
+
+
+------------------------------------------------------------------------------
+# gsub
+modifies self with every occurence of the given pattern replaced
+
+pets = 'cat cat dog'
+pets.sub('cat', 'fish')
+# =>'fish fish dog'
+
+------------------------------------------------------------------------------
+# downcase
+returns a new string with all the lowercase characters in self
+name = 'William'
+name.downcase 
+# => 'william'
+
+------------------------------------------------------------------------------
+# upcase
+returns a new string with all the uppercase characters in self
+name = 'William'
+name.downcase 
+# => 'WILLIAM'
+
+------------------------------------------------------------------------------
+# eql?
+returns true if the object has the same length and content
+
+name = 'William'
+name.eql?('William')
+# => true
+
+------------------------------------------------------------------------------
+# include?
+
+returns true if self contains other_string
+pets = 'cat cat dog'
+pets.include?('dog')
+# => true
+
+------------------------------------------------------------------------------
+# length
+returns the number of characters in self. Alias for #size
+name = 'Will'
+name.length
+# => 4
+
+------------------------------------------------------------------------------
+# to_i
+returns the result of interpreting leading characters in self as as an integer
+name = '23will'
+name.to_i
+# => 23
+
+
+------------------------------------------------------------------------------
+
+
+
+}}}
 
 # ARRAYS
 {{{ 
@@ -261,8 +394,16 @@ properties
 methods
 }}}
 
+# HASHES
+{{{
 
-{{{ use correct terminology
+hash syntax
+
+hash methods used in book
+}}}
+
+# TERMINOLOGY
+{{{
 
 ```ruby
 a = 'hello'
@@ -299,7 +440,7 @@ invoked on line 10 with the string `'hello'` passed as an argument. The method
 
 }}}
 
-
+# PRACTICE w/ EXAMPLES
 {{{ example 1
 ```ruby
 def fix(value)
@@ -348,3 +489,4 @@ as needed. Thus, both `s` and `t` reference the same `String`, and that
 `String` has the value `'HELLO!'`
 
 }}}
+
