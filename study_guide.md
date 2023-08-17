@@ -1,7 +1,43 @@
 ## TOPICS
 
-# HOW TO ANSWER
-{{{  
+{{{ QUESTIONS TO ASK
+
+**am I being too wordy, or is this level of detail appropriate for certain
+questions?**
+
+puts str
+"The value of the variable `str` is passed as an argument to the method `puts`
+  and the `hello` is output"
+
+```ruby 
+i = 3 
+
+loop do 
+  puts str 
+  i -= 1 
+  break if i == 0 
+end
+```
+
+
+}}}
+
+{{{ TERMINOLOGY
+# "conditionals" 
+if else
+
+# branch
+sequence of code that is executed conditionally
+
+# break if
+break statement
+
+# i == 0
+expression
+
+}}}
+
+{{{ HOW TO ANSWER
 
 1. RUN the code
 2. WRITE down output
@@ -52,8 +88,7 @@ block is accessible inside the block.
 
 }}}
 
-# LANGUAGE
-{{{ 
+{{{ HOW TO SPEAK 
 
 "The local variable `X` is initialized within the block, and so it is not
 available in the outer scope."
@@ -63,67 +98,56 @@ and the local variable `X` is initialized/reassigned within this block"
 
 "When we reference the variable in the conditional"
 
-}}}
-
-## nil
-## puts
-
-# FIGURE THIS OUT
-{{{   
-
 Q: how does the book explain the process by which arguments to a method call
 become bound to method parameter names
-
-A: "We start by passing `var_name` to `method_name`; this binds the object
-referenced by `var_name` (`object`) to `param_name`. `variable` and
-`param_name` are now aliases for the object.
 
 We start by passing `s` to `fix`; this binds the String represented by
 `'hello'` to `value`. In addition, `s` and `value` are now aliases for the
 String.
 
-A: read the pass-by-value / reference articles as they go over this method
-passing many times (ruby object's mutating and non-mutating methods)
-[https://launchschool.medium.com/ruby-objects-mutating-and-non-mutating-methods-78023d849a5f]
-
-Q: how would i explain what is happening in the below example without going
-over what each iteration of the loop does when its perfectly clear what is
-happening?
-
-```ruby i = 3 loop do puts str i -= 1 break if i == 0 end
-
-```
-
-Q: how do i refer to the `break if`? Is this a conditional statement?
-
-A:
-
-Q: how do i refer to the `i == 0`? What words would the book use to describe
-the entire line `break if i == 0`?
-
-A: 
-
 }}}
 
-# OPERATORS
-{{{ 
+{{{ CONCEPTS TO REFERENCE
 
-The expressions or values that an operator uses are its **operands**
-`a + b` is `a.+(b)`
+**variable scope**
 
-# arithmetic
-+
--
+**variable shadowing**
+
+**pass by reference**
+
+**mutating?**
+
+**truthy**
+
+**implicit return**
+
+}}}
+______________________________________________________________________________
+
+{{{ OPERATORS
+
+The expressions or values that an *operator* uses are *operands*
+
+{{{ numeric             **  *   /   %   +   -   divmod
+
+**
+*
 /
 %
++
+-
 divmod
-**
-# comparison
+}}}
+
+{{{ conditional         ==  !=  <   >   <=  >=  ? :
+
 ==
 !=
 <, >, <=, >=, <=>
+}}}
 
-# assignment
+{{{ assignment          +=  -=  *=
+
 =
 +=
 -=
@@ -134,14 +158,29 @@ divmod
 
 # parallel assignment
 a, b, c = 10, 20, 30
+}}}
 
-# logical
+{{{ logical             !   &&  ||
+
 &&
 ||
 !
 !!
-# ternary
-?:
+
+# short-circuit evaluation
+the && and || operators use short-circuit evaluation
+the return value is always the value of the operand evaluated last
+
+they can work with truthy values and return truthy values too!
+
+foo = nil
+bar = 'cooks'
+is_ok = foo || bar          # => this expression doesn't return true or false!
+is_ok # => 'cooks'
+
+}}}
+
+{{{ string
 
 # string
 +   concatenation: 
@@ -150,7 +189,8 @@ a, b, c = 10, 20, 30
 *   returns a new String containing integer copies of itself 
 `'hello' *3`  
 
-# precedence table
+}}}
+
 {{{ precedence table
 ```ruby
 !, ~, unary +
@@ -199,17 +239,45 @@ modifier-if, modifier-unless, modifier-while, modifier-until
 }}}
 }}}
 
-# VARIABLES
-{{{ 
-constant names
-initialization & reassignment
-as pointers
-variable scope
-varible shadowing
+{{{ VARIABLES
+
+{{{ local variable & constant names
 }}}
 
-# METHODS
 {{{ 
+initialization & reassignment
+}}}
+
+{{{ variables as pointers
+
+}}}
+
+{{{ variable scope & method definitions 
+}}}
+
+{{{ variable scope & blocks
+
+}}}
+
+{{{ variable shadowing
+
+when you try to reference a local variable from within a block that has the
+same name as a block parameter, you cannot reference it
+
+name = 'will'
+loop do |name|
+  puts name
+end
+
+}}}
+
+}}}
+
+{{{ METHODS
+
+## puts
+returns nil
+
 definitions
 invocation
 implicit and explicit return values
@@ -222,8 +290,7 @@ mutating
 
 }}}
 
-# EXPRESSIONS AND RETURN
-{{{ 
+{{{ EXPRESSIONS and RETURN
 
 the return keyword explicitly returns a value within a method
 
@@ -233,8 +300,7 @@ end
 
 }}}
 
-# CONDITONALS
-{{{ 
+{{{ CONDITONALS
 
 for
 
@@ -245,8 +311,24 @@ case statements
 
 }}}
 
-# LOOPS
+{{{ BOOLEANS vs TRUTHINESS
+## nil
 {{{
+when used in an expression, nil will be **treated** as false and the following
+branch will not be executed
+
+```ruby
+if nil
+  puts "I encountered a nil"
+end
+```
+
+}}}
+
+
+}}}
+
+{{{ LOOPS
 
 while
 do/2hil
@@ -254,20 +336,15 @@ until
 
 }}}
 
-# MUTABILITY
-{{{ 
+{{{ MUTABILITY
 mutability 
 & 
 immutability, 
 constants
 }}}
+______________________________________________________________________________
 
-# BOOLEANS vs TRUTHINESS
-{{{ 
-}}}
-
-# NUMBERS
-{{{
+{{{ NUMBERS
 integers
 
 floats
@@ -284,8 +361,7 @@ methods
 ------------------------------------------------------------------------------
 }}}
 
-# STRINGS
-{{{ 
+{{{ STRINGS
 
 ------------------------------------------------------------------------------
 # string interpolation
@@ -315,7 +391,8 @@ returns a new string copied from self with trailing characters removed
 first_name.chomp
 
 ------------------------------------------------------------------------------
-# delete returns a new string copied from self without arguments
+# delete 
+returns a new string copied from self without arguments
 fruit = "apples, bananas, coconuts, oranges, pineapples"
 fruit.delete('o')
 fruit # => "apples, bananas, ccnuts, ranges, pineapples"
@@ -331,7 +408,7 @@ pets.sub('cat', 'fish')
 
 ------------------------------------------------------------------------------
 # gsub
-modifies self with every occurence of the given pattern replaced
+returns a copy of self with all occurence of the given pattern replaced
 
 pets = 'cat cat dog'
 pets.sub('cat', 'fish')
@@ -388,60 +465,24 @@ name.to_i
 
 }}}
 
-# ARRAYS
-{{{ 
+{{{ ARRAYS
 properties
 methods
 }}}
 
-# HASHES
-{{{
+{{{ HASHES
 
 hash syntax
 
 hash methods used in book
 }}}
 
-# TERMINOLOGY
-{{{
-
-```ruby
-a = 'hello'
-b = a
-a = 'goodbye'
-```
-On line 1, the local variable `a` is initialized to the string 'hello'
-On line 2, the local variable `b` is initialized to the same string
-variable `a` is referencing.
-On line 3, the local variable `a` is reassigned to the string 'goodbye'
-
-```ruby
-def example(str)
-  i = 3
-  loop do
-    puts str
-    i -= 1
-    break if i == 0
-  end
-end
-
-example('hello')
-```
-**What does this code output and why? What principle is demonstrated here?**
-
-This code outputs
-`hello`
-`hello`
-`hello`
-
-The code consists of a method definition for `example` and this method is
-invoked on line 10 with the string `'hello'` passed as an argument. The method
-`example` uses this 
+{{{ TYPE CONVERSION
 
 }}}
+______________________________________________________________________________
 
-# PRACTICE w/ EXAMPLES
-{{{ example 1
+{{{ PRACTICE w/ EXAMPLES
 ```ruby
 def fix(value)
   value.upcase!

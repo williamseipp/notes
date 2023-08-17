@@ -1,3 +1,4 @@
+
 {{{                             GIT
 
 ## setup
@@ -77,6 +78,14 @@ gqj
 
 and some other text
 }}}
+{{{ LUNARVIM
+
+shortcut to edit config.lua
+<leader> Lc
+
+shortcut to search for text
+<leader> st
+}}}
 {{{ APT
 
 apt-get update
@@ -142,7 +151,10 @@ launch with dmenu
 
 # testing your video
 
-profile picture.settings.video_tab
+profile_picture.settings.video_tab
+
+# exit
+profile_picture.exit
 
 }}}
 {{{    PEDAC
@@ -318,7 +330,13 @@ Code
 
 =end
 }}}
-{{{
+{{{ YT-DLP
+
+
+-x          convert video to audio-only files (requires ffmpege and ffprobe)
+yt-dlp -x https://youtu.be/limlqTcg0R4
+
+
 
 }}}
 {{{
