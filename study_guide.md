@@ -16,6 +16,22 @@ puts str
       break if i == 0 
     end
 
+______________________________________________________________________________
+
+# ASK THIS! ASK THIS! ASK THIS! ASK THIS! ASK THIS!
+# should I include the explanation of what `s` is assigned to explicitly on
+# its own line or is the way the book references this fact enough?
+
+    def fix(value)
+    end
+
+    s = "hello"
+    t = fix(s)
+
+We start by passing `s` to `fix`; this binds the String represented by
+`'hello'` to `value`. In addition, `s` and `value` are now aliases for the
+String.
+
 # how would you look back at the book and the course to determine which ideas
 # are formal concepts they want you to reference in your answers?
 
@@ -98,8 +114,8 @@ ______________________________________________________________________________
 
 "When we reference the variable `name` in the conditional"
 
-Q: how does the book explain the process by which arguments to a method call
-become bound to method parameter names
+______________________________________________________________________________
+# passing arguments to method calls
 
     def fix(value)
     end
@@ -232,8 +248,15 @@ ______________________________________________________________________________
 variables store information to be referenced and manipulated
 
 # local variable & constant names
+    first_name
+    DATE_OF_BIRTH
 
 # initialization & reassignment
+    first_name = "William"
+    first_name = "Will"
+
+# global variables
+    $var = "you can reference me at any point in the program"
 
 # variable scope & method definitions 
 A variable's scope determines where in a program its available for use.
@@ -285,27 +308,28 @@ The expressions or values that an *operator* uses are *operands*
 
 # numeric             **  *   /   %   +   -   divmod
 
-    **
-    *
-    /
-    %
-    +
-    -
-    divmod
+    a ** b
+    a * b
+    a / b
+    a % b               modulo: pos/neg depends on b
+    a.remainder b       remainder: pos/neg depends on a
+    a.divmod b          divmod: [quotient, remainder]
+    a + b
+    a - b
 
 # conditional         ==  !=  <   >   <=  >=  ? :
 
-    ==
-    !=
-    <, >, <=, >=, <=>
+    ==                  equality
+    !=                  not equal
+    <, >, <=, >=, <=>   greater/less than
 
 # assignment          +=  -=  *=
 
     =
-    +=
+    +=              left operand gets result
     -=
     *=
-    /=      divides left operand with right and assigns result to left
+    /=      
     %=
     **=
 
@@ -314,10 +338,10 @@ The expressions or values that an *operator* uses are *operands*
 
 # logical             !   &&  ||
 
-    &&
-    ||
-    !
-    !!
+    &&              TRUE && TRUE
+    ||              TRUE OR FALSE
+    !               NOT
+    !!              turns values into their boolean equivalent
 
 # short-circuit evaluation
 the && and || operators use short-circuit evaluation
@@ -325,10 +349,14 @@ the return value is always the value of the operand evaluated last
 
 they can work with truthy values and return truthy values too!
 
-    foo = nil
-    bar = 'cooks'
-    is_ok = foo || bar          # => this expression doesn't return true or false!
-    is_ok # => 'cooks'
+    3 || 'foo'      # => 3
+    3 && 'foo'      # => 'foo'
+    nil || 'foo'    # => 'foo'
+    'foo' && nil    # => nil
+
+you can coerce truthy values into booleans when you need it:
+
+    boolean_value = !!('foo' || nil)
 
 
 # string
@@ -341,47 +369,35 @@ they can work with truthy values and return truthy values too!
 
 
 {{{ precedence table
+
+Operators with highest precedence will get evaluated before those with 
+lower and bind those operands. Good examples:
+    
+    ( 'foo' && 'bar' ) || 'baz'
+    ( 3 * 2 ) + 7
+    
+
 ```ruby
 !, ~, unary +
-
 **
-
 unary -
-
 *, /, %
-
 +, -
-
 <<, >>
-
 &
-
 |, ^
-
 >, >=, <, <=
-
 <=>, ==, ===, !=, =~, !~
-
 &&
-
 ||
-
 .., ...
-
 ?, :
-
 modifier-rescue
-
 =, +=, -=, etc.
-
 defined?
-
 not
-
 or, and
-
 modifier-if, modifier-unless, modifier-while, modifier-until
-
 { } blocks
 ```
 
@@ -391,12 +407,51 @@ modifier-if, modifier-unless, modifier-while, modifier-until
 
 {{{ METHODS
 
+A method is a way to perform actions repeatedly and extract this to one place
+
 # puts
 returns nil
 
 # definitions
-# invocation
+    def say(words)
+      #do something with words
+    end
+
+`words` is a parameter; it is used to access data outside of the method's
+scope within the method definition.
+______________________________________________________________________________
+
+# invocation     ( calling a method )
+
+arguments are "passed" to a method invocation
+
+    say('hello')
+
+When we call `say("hello")`, we pass in the string "hello" as the argument
+in place for the `words` parameter
+______________________________________________________________________________
+
+# default parameters
+
+    def greeting(words="hello")
+      puts words + "!"
+    end
+
+    greeting
+    # => "hello."
+
+______________________________________________________________________________
+
 # implicit and explicit return values
+
+Ruby methods always return the evaluated result of the last line of the
+expression unless an explicit return comes before it like so:
+
+    def some_method
+      return "hi"
+      puts "hello"
+    end
+______________________________________________________________________________
 # output vs return values
 many methods have only return values. Examples include
 
@@ -409,14 +464,50 @@ some methods perform an action AND have a return value. Methods like
     String#gsub!    mutates the caller and returns self
 
 There is a distinction
+______________________________________________________________________________
 
 # side effects
+______________________________________________________________________________
 # pass-by-reference vs pass-by-value
     watch the videos / articles and condense the information into takeaways
     AND record the formal concept that will asked be for on the assessment
 
+______________________________________________________________________________
 # call stack
+
+Keeps track of 
+* what method is executing
+* where does execution resume after method returns
+
+The call stack
+* puts information about the current method on top
+* removes that information when the method returns
     
+The call stack is used by
+* methods
+* blocks
+* procs
+* lambdas
+
+# example
+
+    1  def first
+    2    puts "first method"
+    3  end
+    4
+    5  def second
+    6    first 
+    7    puts "second method"
+    8  end
+    9
+    10 second
+
+**Call Stack**          name of the method that was executing, placeholder
+    puts
+    first: line 2
+    second: line 6
+    main: line 10
+
 }}}
 
 {{{ EXPRESSIONS and RETURN
@@ -624,14 +715,24 @@ hash methods used in book
 {{{ TYPE CONVERSION
 
 # to_s
+    [1, 2, 3].to_s
+    # => "[1, 2, 3]"
 
-# to_i
+# to_i          interprets leading characters
+    '4 score'.to_i
+    # => 4
 
-# to_f
+# to_f          interprets leading characters
+    'a5'.to_f
+    # => 0
 
-# to_a
+# to_a          method doesnt exist for numbers and strings!
+    { name: "Will", age: 37 }.to_a
+    # => [[:name, "Will"],[:age, 37]]
 
-# to_h
+# to_h     must provide a block or an array of 2-element sub-arrays
+    [[0, "alice"], [1, "bob"]].to_h
+    # => { 0 => "alice", 1 => "bob" }
 
 }}}
 ______________________________________________________________________________
