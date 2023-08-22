@@ -11,36 +11,36 @@ _____________________________________________________________________________
 # note-taking procedure
 
 1. As I read through the material, I summarize concepts into `question /answer`
-   pairs. Distilling key concepts into discrete questions builds a complete
-mental model. Recalling the `formal answer` that Launch School provides in the
-course material is important as I will cite them directly in exams. Summarizing
-them in my own words helps me adopt that level of precision and clarity in the
-way that I think and talk.
+   pairs. A `question` creates a distinct part of an overall topic. The `formal
+answer` is copied from the course and there primarily to ensure that my later
+summary is correct. Including the `formal answer` is also important for
+adopting a precise & simple language for my own thinking / answering. 
 
 2. I group these `question / answer` pairs together after finishing a lesson
-   and create a heading that describes the concept being demonstrated, and a
-table of contents for all concepts covered. These can change later as I review
-the study guide supplied at the end of the course.
+   and create a heading that describes the overall topic being covered. This
+'table of contents' is then compared to the study guide for throughness.
 
-3. I then provide my own code `examples` beneath question / answer pairs to
-   APPLY my understanding of a concept. 
+3. I then answer these questions and provide examples to test my understanding.
+   I use precise language and compare my answers to the `formal answer` I
+provided earlier. When asked to provide an example, I create my own and explain
+the syntax and output with precise language. I run these code samples to ensure
+that their output is the same that I predicted.
 
-4. Next, I explain what is happening in these examples with precise language
-   and describe both the output and the relevant syntax
+4. Then, I include lesson quizzes and place extra practice questions covering
+   those topics that I didn't answer correctly at the bottom of the notes.
 
-5. Then, I include practice questions covering all topics from various
-   sources and place them at the bottom of the notes. 
-
-6. Lastly, I drill these and treat them like questions on the exam; timing them
-   and writing down how long it took next to the folded answer. I do this until
-   it becomes easy and enjoyable.
+5. Lastly, I source additional questions and provide `my answer` for these
+   questions, treating them like actual exam questions. How long it took will
+be written. If the question is similar enough to a question covered in the
+course, a `book answer` will be included to determine if I'm being correct AND
+precise.
 _____________________________________________________________________________
 
 
 # TABLE OF CONTENTS:
-# VARIABLE SCOPE
-# VARIABLE SHADOWING
-# VARIABLE AS POINTERS
+# VARIABLES
+# METHODS
+# LOOPS
 # PROBLEMS
 
 
@@ -92,7 +92,7 @@ _____________________________________________________________________________
     puts inner      # => "undefined local variable or method 'inner' for main"
 
 }}}
-{{{  Demonstrate an example of variable scoping rules in methods
+{{{  Examples... in methods
 
     my_name = "William"
 
@@ -104,11 +104,11 @@ _____________________________________________________________________________
 
 }}}
 
+# METHODS
+# LOOPS
 
-# VARIABLE SHADOWING
-# VARIABLE AS POINTERS
 
-
+# PROBLEMS
 {{{  problem 1: variable shadowing
 
 > What does the following code return? What does it output? Why? What concept

@@ -1,6 +1,17 @@
-## TOPICS
+# OPERATORS
+# METHODS
+# VARIABLES
+# NUMBERS
+# STRINGS
+# ARRAYS
+# HASHES
+# LOOPS
+# TYPE CONVERSION
+# RANDOM
 
-{{{ QUESTIONS TO ASK
+
+
+{{{  QUESTIONS TO ASK YUJ
 
 # am I being too wordy? When is this level of detail appropriate?
 
@@ -76,106 +87,7 @@ block is accessible inside the block.
 }}}
 
 }}}
-
-{{{ PRECISE VOCABULARY
-
-# "conditionals" 
-if else
-
-# branch
-sequence of code that is executed conditionally
-
-# break if
-break statement
-
-# i == 0
-expression
-
-______________________________________________________________________________
-
-    loop do
-      name = 'will'
-      break
-    end
-
-    puts name
-    
-"The local variable `name` is initialized within the block, and so it is not
-available in the outer scope."
-
-"The `do/end` following invocation of the `loop` method defines a block
-and the local variable `name` is initialized/reassigned within this block"
-______________________________________________________________________________
-
-
-    if name == "will"
-      puts "that is my name!"
-    end
-
-"When we reference the variable `name` in the conditional"
-
-______________________________________________________________________________
-# passing arguments to method calls
-
-    def fix(value)
-    end
-
-    s = "hello"
-    t = fix(s)
-
-We start by passing `s` to `fix`; this binds the String represented by
-`'hello'` to `value`. In addition, `s` and `value` are now aliases for the
-String.
-
-______________________________________________________________________________
-
-    def a_method
-      puts "hello world"
-    end
-
-Describe this method.
-
-BAD: "the results of the method is hello world"
-GOOD: "the method invocation outputs the string hello world and returns nil"
-
-______________________________________________________________________________
-
-    greeting = "Hello"
-
-The variable `greeting` is assigned to the String `"Hello"`
-
-______________________________________________________________________________
-
-    a = "Hello"
-
-    if a
-      puts "Hello is truthy"
-    else
-      puts "Hello is falsy"
-    end
-
-`a` evalutes as true in the conditional statement so 'Hello is truthy' 
-is output
-
-`a` is truthy and so "Hello is truthy" is output
-
-* "evaluates to true"
-* "evaluates as true"
-* "is truthy"
-
-______________________________________________________________________________
-
-Values or references are passed to methods
-Values or references are returned by methods
-
-______________________________________________________________________________
-
-Parameters are the names assigned to a method's arguments
-Arguments are the values that get passed to the method
-
-}}}
-
-{{{ HOW TO ANSWER
+{{{  ANSWERING PROCEDURE
 
 * Remember to describe how the code works with precision and specific syntax.
 
@@ -192,7 +104,6 @@ Arguments are the values that get passed to the method
 
 
 }}}
-
 {{{  HOW NOT TO ANSWER
 
     def replace(str, value)
@@ -224,39 +135,15 @@ mutate the referenced object, the value that `greet` references remains
 `Hey!`.
 
 }}}
-
-{{{ CONCEPTS TO REFERENCE
-
-# variable scope
-
-# variable shadowing
-
-# pass by reference
-
-# mutating?
-
-# truthy
-
-# implicit return
-
-}}}
 ______________________________________________________________________________
 
-{{{ VARIABLES
+# VARIABLES
 
-# what are variables?
-variables store information to be referenced and manipulated
+{{{  VARIABLES
 
-# local variable & constant names
-    first_name
-    DATE_OF_BIRTH
 
-# initialization & reassignment
-    first_name = "William"
-    first_name = "Will"
 
-# global variables
-    $var = "you can reference me at any point in the program"
+
 
 # variable scope & method definitions 
 A variable's scope determines where in a program its available for use.
@@ -301,7 +188,125 @@ same name as a block parameter, you cannot reference it
 
 
 }}}
+{{{  What are variables?
 
+
+`Variables are used to store information to be referenced and manipulated in a
+computer program. ` 
+
+    variables store information to be referenced and manipulated
+
+
+
+}}}
+{{{  Demonstrate initalization
+
+    You initialize a variable like so:
+
+    name = "William"
+
+    Here, I initalize the variable `name` and assign it the String "William"
+
+}}}
+{{{  What is meant by 'variables as pointers'?
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+{{{  What is variable reassignment?
+
+
+
+    As variables are pointers, a variable can be assigned to a different
+    object than it was when created.
+
+    first_name = "William"
+    first_name = "Will"
+
+
+
+
+}}}
+{{{  What is variable scope?
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+{{{  How does variable scope work in methods? Provide an example
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+{{{  How does variable scope work in blocks? Provide an example
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+{{{  Provide examples of different variable types and their qualities
+
+
+`formal_definition`
+
+    method parameters
+    block parameters
+    local variables
+
+    global variables
+    $var = "you can reference me at any point in the program"
+    constants
+
+
+}}}
+{{{  example_question
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+{{{  example_question
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+
+______________________________________________________________________________
+
+# OPERATORS
 {{{ OPERATORS
 
 The expressions or values that an *operator* uses are *operands*
@@ -405,6 +410,31 @@ modifier-if, modifier-unless, modifier-while, modifier-until
 
 }}}
 
+{{{  example_question
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+{{{  example_question
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+______________________________________________________________________________
+
+# METHODS
 {{{ METHODS
 
 A method is a way to perform actions repeatedly and extract this to one place
@@ -510,36 +540,105 @@ The call stack is used by
 
 }}}
 
-{{{ EXPRESSIONS and RETURN
+{{{  What is pass by reference?
 
-the return keyword explicitly returns a value within a method
 
-    def some_method
-      return 42
-    end
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+{{{  What is implicit and explicit return?
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+{{{  example_question
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+{{{  example_question
+
+
+`formal_definition`
+
+    my_answer
+
+
+
 
 }}}
 
-{{{ BOOLEANS vs TRUTHINESS
+______________________________________________________________________________
 
-# what is nil?
+{{{  What is an expression and what is meant by 'return'?
 
-There is only one `nil` object. It's object_id is `4`
+`Ruby expressions always return a value`
+    
+    an expression is code that can be evaluated to some value, even if its
+    an error message or nil
+}}}
+{{{  What is a conditional expression?
 
-when used in an expression, nil will be **treated** as false and the following
-branch will not be executed
+}}}
+{{{  Provide examples of all conditional expressions used thus far
+
+
+}}}
+{{{  What is nil?
+
+
+``
+    
+    In Ruby, nil is the absence of value
+}}}
+{{{  Provide an example of nil used in a conditional expression. What happens?
+
+
+`An important property of the nil type is that when used in an expression, such
+as an if statement, it will be treated as false, as it represents an absence of
+content.`
+
+
+
 
     if nil
       puts "I encountered a nil"
     end
 
-# booleans
 
-There is only one `true`, and only one `false`
 
-# truthiness
-all objects other than `false` and `nil` will evaluate to `true` in an
-expression
+
+when used in an expression, nil will be **treated** as false and the following
+branch will not be executed
+
+
+
+
+
+}}}
+{{{  What is truthiness?
+
+`all objects other than `false` and `nil` will evaluate to `true` in an
+expression`
+}}}
+{{{  Provide an example of truthy/falsy values used in a conditional
 
     if name
       puts 'name was truthy'
@@ -549,34 +648,83 @@ expression
 
 }}}
 
-{{{ CONDITONALS
+______________________________________________________________________________
 
-for
+# LOOPS
+{{{  What is a loop?
 
-unless
+}}}
+{{{  Provide examples of different types of loops
 
-case statements
+}}}
+{{{  What is iteration?
+
+}}}
+{{{  Provide examples of different types of iteration
+
+}}}
+{{{  What is recursion?
+
+}}}
+{{{  Provide examples of recursion
+
+}}}
+{{{  example_question
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+{{{  example_question
+
+
+`formal_definition`
+
+    my_answer
+
+
 
 
 }}}
 
-{{{ LOOPS
 
-while
-do/while
-until
+
+______________________________________________________________________________
+
+# RANDOM
+{{{  What is mutability? What is meant by a variable being 'immutable'?
 
 }}}
+{{{  example_question
 
-{{{ MUTABILITY
 
-# mutability 
-# immutability
-# constants
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+{{{  example_question
+
+
+`formal_definition`
+
+    my_answer
+
+
+
 
 }}}
 ______________________________________________________________________________
 
+# NUMBERS
 {{{ NUMBERS
 
 # integers
@@ -593,7 +741,31 @@ ______________________________________________________________________________
 
 
 }}}
+{{{  example_question
 
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+{{{  example_question
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+______________________________________________________________________________
+
+# STRINGS
 {{{ STRINGS
 
 # string interpolation
@@ -693,7 +865,30 @@ returns the result of interpreting leading characters in self as as an integer
 
 
 }}}
+{{{  example_question
 
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+{{{  example_question
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+______________________________________________________________________________
+# ARRAYS
 {{{ ARRAYS
 
 # syntax
@@ -703,7 +898,31 @@ returns the result of interpreting leading characters in self as as an integer
 # methods
 
 }}}
+{{{  example_question
 
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+{{{  example_question
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+______________________________________________________________________________
+
+# HASHES
 {{{ HASHES
 
 hash syntax
@@ -711,6 +930,31 @@ hash syntax
 hash methods used in book
 
 }}}
+{{{  example_question
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+{{{  example_question
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+______________________________________________________________________________
+
+# TYPE CONVERSION
 
 {{{ TYPE CONVERSION
 
@@ -735,10 +979,36 @@ hash methods used in book
     # => { 0 => "alice", 1 => "bob" }
 
 }}}
+{{{  example_question
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+{{{  example_question
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
 ______________________________________________________________________________
 
-{{{ PRACTICE w/ EXAMPLES
+# PROBLEMS
+{{{ problem 1: mutation
 ```ruby
+
+
+
 def fix(value)
   value.upcase!
   value.concat('!')
@@ -751,18 +1021,7 @@ t = fix(s)
 
 What does this do and why?
 
-On line 7, the local variable `s` is assigned the String `'hello'`
-This value gets passed to `fix` on line 8, and the method parameter
-`value` is bound to the String `'hello'`. This String then calls the `#upcase!`
-method on itself on line 2, changing itself to `HELLO`. On line 3, the same
-String calls the `#concat` method on itself with the String `'!'` as an 
-argument, changing itself to `'HELLO!'`. On line 4, the reference to this
-String is returned by the method, which then gets assigned to the local 
-variable `t`. As a result, both `s` and `t` reference the same String `HELLO!`
-
-This example demonstrates the concept of pass-by-reference
-
-{{{   **book answer**
+{{{  book answer
 We start by passing `s` to `fix`; this binds the String represented by
 `'hello'` to `value`. In addition, `s` and `value` are now aliases for the
 String.
@@ -783,12 +1042,43 @@ as needed. Thus, both `s` and `t` reference the same `String`, and that
 `String` has the value `'HELLO!'`
 
 }}}
+{{{  my answer: m:ss
+On line 7, the local variable `s` is assigned the String `'hello'`
+This value gets passed to `fix` on line 8, and the method parameter
+`value` is bound to the String `'hello'`. This String then calls the `#upcase!`
+method on itself on line 2, changing itself to `HELLO`. On line 3, the same
+String calls the `#concat` method on itself with the String `'!'` as an 
+argument, changing itself to `'HELLO!'`. On line 4, the reference to this
+String is returned by the method, which then gets assigned to the local 
+variable `t`. As a result, both `s` and `t` reference the same String `HELLO!`
+
+This example demonstrates the concept of pass-by-reference
 
 }}}
 
-______________________________________________________________________________
 
-______________________________________________________________________________
+}}}
+{{{  example_question
 
-______________________________________________________________________________
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+{{{  example_question
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+
 
