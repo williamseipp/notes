@@ -1,6 +1,6 @@
+# VARIABLES
 # OPERATORS
 # METHODS
-# VARIABLES
 # NUMBERS
 # STRINGS
 # ARRAYS
@@ -138,56 +138,6 @@ mutate the referenced object, the value that `greet` references remains
 ______________________________________________________________________________
 
 # VARIABLES
-
-{{{  VARIABLES
-
-
-
-
-
-# variable scope & method definitions 
-A variable's scope determines where in a program its available for use.
-Inside of a method, you can only reference those variables that have been
-initialized within the method have self-contained scope ( like a bubble )
-
-# variable scope & blocks
-A block creates its own "inner scope"
-Within that inner scope, you can access variables initialized in an outer
-scope, but the outer scope cannot reference variables initialized in the block
-
-    a = 5
-    3.times do |n|
-      a += 1
-      b = 2
-    end
-
-    puts a     # => 8
-    puts b     # => NameError: the outer scope cannot reference a variable
-                               defined in the inner scope of the block
-
-# variables as pointers
-
-    a = 4
-    b = a
-    a = 7
-    b is 4
-
-variables point to values in memory. `b = a` means that `b` references the
-object that `a` references, which is `4`. Reassigning `a` to `7` does not
-change the fact that `b` is assigned to `4`
-
-# variable shadowing
-
-when you try to reference a local variable from within a block that has the
-same name as a block parameter, you cannot reference it
-
-    name = 'will'
-      loop do |name|
-      puts name
-    end
-
-
-}}}
 {{{  What are variables?
 
 
@@ -196,6 +146,21 @@ computer program. `
 
     variables store information to be referenced and manipulated
 
+
+
+}}}
+{{{  Provide examples of different variable types and their qualities
+
+
+`formal_definition`
+
+    method parameters
+    block parameters
+    local variables
+
+    global variables
+    $var = "you can reference me at any point in the program"
+    constants
 
 
 }}}
@@ -266,50 +231,16 @@ computer program. `
 
 
 }}}
-{{{  Provide examples of different variable types and their qualities
-
-
-`formal_definition`
-
-    method parameters
-    block parameters
-    local variables
-
-    global variables
-    $var = "you can reference me at any point in the program"
-    constants
-
-
-}}}
-{{{  example_question
-
-
-`formal_definition`
-
-    my_answer
-
-
-
-
-}}}
-{{{  example_question
-
-
-`formal_definition`
-
-    my_answer
-
-
-
+{{{  What is variable shadowing? Provide an example.
 
 }}}
 
-______________________________________________________________________________
 
 # OPERATORS
-{{{ OPERATORS
+{{{  What is an operator?
 
-The expressions or values that an *operator* uses are *operands*
+}}}
+{{{  Provide examples of numeric operators
 
 # numeric             **  *   /   %   +   -   divmod
 
@@ -321,12 +252,16 @@ The expressions or values that an *operator* uses are *operands*
     a.divmod b          divmod: [quotient, remainder]
     a + b
     a - b
+}}}
+{{{  Provide examples of conditional operators
 
 # conditional         ==  !=  <   >   <=  >=  ? :
 
     ==                  equality
     !=                  not equal
     <, >, <=, >=, <=>   greater/less than
+}}}
+{{{  Provide examples of assignment operators. Where are they most common? 
 
 # assignment          +=  -=  *=
 
@@ -337,9 +272,13 @@ The expressions or values that an *operator* uses are *operands*
     /=      
     %=
     **=
-
+}}}
+{{{  Demonstrate parallel assignment. Is it useful?
 # parallel assignment
     a, b, c = 10, 20, 30
+
+}}}
+{{{  Provide examples of logical operators. Demonstrate short-circuiting 
 
 # logical             !   &&  ||
 
@@ -363,6 +302,8 @@ you can coerce truthy values into booleans when you need it:
 
     boolean_value = !!('foo' || nil)
 
+}}}
+{{{  Provide examples of String operators. Are they useful?
 
 # string
 
@@ -371,18 +312,17 @@ you can coerce truthy values into booleans when you need it:
 
 #       *   returns a new String containing integer copies of itself 
     `'hello' *3`  
-
-
-{{{ precedence table
+}}}
+{{{  What is operator precedence? Why is it important to know?
 
 Operators with highest precedence will get evaluated before those with 
 lower and bind those operands. Good examples:
     
     ( 'foo' && 'bar' ) || 'baz'
     ( 3 * 2 ) + 7
-    
+}}}
+{{{  What are some good tips for working with / trying to remember precedence?
 
-```ruby
 !, ~, unary +
 **
 unary -
@@ -404,75 +344,24 @@ not
 or, and
 modifier-if, modifier-unless, modifier-while, modifier-until
 { } blocks
-```
-
 }}}
 
-}}}
-
-{{{  example_question
-
-
-`formal_definition`
-
-    my_answer
-
-
-
-
-}}}
-{{{  example_question
-
-
-`formal_definition`
-
-    my_answer
-
-
-
-
-}}}
-______________________________________________________________________________
 
 # METHODS
-{{{ METHODS
+{{{  What is a method?
+`A method is a way to perform actions repeatedly and extract this to one place`
 
-A method is a way to perform actions repeatedly and extract this to one place
-
-# puts
-returns nil
-
-# definitions
     def say(words)
       #do something with words
     end
 
 `words` is a parameter; it is used to access data outside of the method's
 scope within the method definition.
-______________________________________________________________________________
+}}}
+{{{  What are the parts of a method definition?
 
-# invocation     ( calling a method )
-
-arguments are "passed" to a method invocation
-
-    say('hello')
-
-When we call `say("hello")`, we pass in the string "hello" as the argument
-in place for the `words` parameter
-______________________________________________________________________________
-
-# default parameters
-
-    def greeting(words="hello")
-      puts words + "!"
-    end
-
-    greeting
-    # => "hello."
-
-______________________________________________________________________________
-
-# implicit and explicit return values
+}}}
+{{{  What is the difference between implicit and explicit return values?
 
 Ruby methods always return the evaluated result of the last line of the
 expression unless an explicit return comes before it like so:
@@ -481,8 +370,9 @@ expression unless an explicit return comes before it like so:
       return "hi"
       puts "hello"
     end
-______________________________________________________________________________
-# output vs return values
+}}}
+{{{  What is the difference between output of a method and a return value?
+
 many methods have only return values. Examples include
 
     String#sub
@@ -494,15 +384,43 @@ some methods perform an action AND have a return value. Methods like
     String#gsub!    mutates the caller and returns self
 
 There is a distinction
-______________________________________________________________________________
+}}}
+{{{  Demonstrate how a method is used
 
-# side effects
-______________________________________________________________________________
+}}}
+{{{  What are default parameters?
+
+
+# default parameters
+
+    def greeting(words="hello")
+      puts words + "!"
+    end
+
+    greeting
+    # => "hello."
+
+
+}}}
+{{{  What are some commonly used methods so far?
+
+# puts
+returns nil
+
+}}}
+{{{  What on Earth is a side effect? 
+}}}
+{{{  What are some 'best practices' to use when creating methods?
+
+}}}
+{{{  Is Ruby pass-by-value or pass-by-reference?
 # pass-by-reference vs pass-by-value
     watch the videos / articles and condense the information into takeaways
     AND record the formal concept that will asked be for on the assessment
 
-______________________________________________________________________________
+}}}
+{{{  What is the call stack?
+
 # call stack
 
 Keeps track of 
@@ -518,6 +436,9 @@ The call stack is used by
 * blocks
 * procs
 * lambdas
+
+}}}
+{{{  Demonstrate the call stack in a simple example
 
 # example
 
@@ -537,56 +458,10 @@ The call stack is used by
     first: line 2
     second: line 6
     main: line 10
-
 }}}
 
-{{{  What is pass by reference?
 
-
-`formal_definition`
-
-    my_answer
-
-
-
-
-}}}
-{{{  What is implicit and explicit return?
-
-
-`formal_definition`
-
-    my_answer
-
-
-
-
-}}}
-{{{  example_question
-
-
-`formal_definition`
-
-    my_answer
-
-
-
-
-}}}
-{{{  example_question
-
-
-`formal_definition`
-
-    my_answer
-
-
-
-
-}}}
-
-______________________________________________________________________________
-
+# CONDITIONALS
 {{{  What is an expression and what is meant by 'return'?
 
 `Ruby expressions always return a value`
@@ -648,7 +523,6 @@ expression`
 
 }}}
 
-______________________________________________________________________________
 
 # LOOPS
 {{{  What is a loop?
@@ -693,9 +567,6 @@ ______________________________________________________________________________
 }}}
 
 
-
-______________________________________________________________________________
-
 # RANDOM
 {{{  What is mutability? What is meant by a variable being 'immutable'?
 
@@ -711,20 +582,10 @@ ______________________________________________________________________________
 
 
 }}}
-{{{  example_question
 
-
-`formal_definition`
-
-    my_answer
-
-
-
-
-}}}
-______________________________________________________________________________
 
 # NUMBERS
+
 {{{ NUMBERS
 
 # integers
@@ -741,15 +602,7 @@ ______________________________________________________________________________
 
 
 }}}
-{{{  example_question
-
-
-`formal_definition`
-
-    my_answer
-
-
-
+{{{  What are the two classes that Ruby uses for numbers?
 
 }}}
 {{{  example_question
@@ -763,7 +616,18 @@ ______________________________________________________________________________
 
 
 }}}
-______________________________________________________________________________
+{{{  example_question
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+
 
 # STRINGS
 {{{ STRINGS
@@ -865,15 +729,7 @@ returns the result of interpreting leading characters in self as as an integer
 
 
 }}}
-{{{  example_question
-
-
-`formal_definition`
-
-    my_answer
-
-
-
+{{{  Demonstrate all methods of the String class used thus far
 
 }}}
 {{{  example_question
@@ -887,7 +743,8 @@ returns the result of interpreting leading characters in self as as an integer
 
 
 }}}
-______________________________________________________________________________
+
+
 # ARRAYS
 {{{ ARRAYS
 
@@ -898,15 +755,7 @@ ______________________________________________________________________________
 # methods
 
 }}}
-{{{  example_question
-
-
-`formal_definition`
-
-    my_answer
-
-
-
+{{{  Demonstrate all methods of the Array class used thus far
 
 }}}
 {{{  example_question
@@ -920,7 +769,19 @@ ______________________________________________________________________________
 
 
 }}}
-______________________________________________________________________________
+{{{  example_question
+
+
+`formal_definition`
+
+    my_answer
+
+
+
+
+}}}
+
+
 
 # HASHES
 {{{ HASHES
@@ -952,7 +813,8 @@ hash methods used in book
 
 
 }}}
-______________________________________________________________________________
+
+
 
 # TYPE CONVERSION
 
