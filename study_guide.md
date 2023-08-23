@@ -10,83 +10,8 @@
 # RANDOM
 
 
+    better to say more than leave out information the TA feels is important
 
-{{{  QUESTIONS TO ASK YUJ
-
-# am I being too wordy? When is this level of detail appropriate?
-
-puts str
-"The value of the variable `str` is passed as an argument to the method `puts`
-  and the `hello` is output"
-
-    i = 3 
-
-    loop do 
-      puts str 
-      i -= 1 
-      break if i == 0 
-    end
-
-______________________________________________________________________________
-
-# ASK THIS! ASK THIS! ASK THIS! ASK THIS! ASK THIS!
-# should I include the explanation of what `s` is assigned to explicitly on
-# its own line or is the way the book references this fact enough?
-
-    def fix(value)
-    end
-
-    s = "hello"
-    t = fix(s)
-
-We start by passing `s` to `fix`; this binds the String represented by
-`'hello'` to `value`. In addition, `s` and `value` are now aliases for the
-String.
-
-# how would you look back at the book and the course to determine which ideas
-# are formal concepts they want you to reference in your answers?
-
-{{{   What level of detail is required for answering questions?
-
-On one hand, the [study_guide](https://launchschool.com/lessons/278c95b6/assignments/37d88bff)
-provides this example:
-{{{ example with A, B, C, and D answers 
-
-```ruby
-
-greeting = 'Hello'
-# The local variable greeting is assigned to the String 'Hello'
-
-loop do         # The do/end that follows the loop method invocation is a block
-  greeting = 'Hi' # Greeting is reassigned to 'Hi'
-  break
-end
-
-puts greeting   # puts is called with the value of the variable greeting passed
-                # to it as an argument and since greeting was reassigned to
-                # Hi, that is the output
-```
-The local variable `greeting` is assigned to the String `'Hello'` on line 1.
-The `do..end` alongside the loop method invocation on lines 3 to 6 defines a
-block, within which `greeting` is reassigned to the String `Hi` on line 4. The
-`puts` method is called on line 8 with the value of the variable `greeting`
-passed to it as an argument; since `greeting` is now assigned to `'Hi'`, this
-is what is output. 
-
-This example demonstrates local variable scoping rules in
-Ruby; specifically the fact that a local variable initialized outside of a
-block is accessible inside the block.
-
-* local variable `greeting`
-* `greeting`
-* variable `greeting`
-* `greeting`
-
-}}}
-
-}}}
-
-}}}
 {{{  ANSWERING PROCEDURE
 
 * Remember to describe how the code works with precision and specific syntax.
@@ -106,6 +31,8 @@ block is accessible inside the block.
 }}}
 {{{  HOW NOT TO ANSWER
 
+
+
     def replace(str, value)
       loop do
         break
@@ -118,6 +45,9 @@ block is accessible inside the block.
     puts greet
 
 What does this code print and why?
+
+
+
 
 # BAD ANSWER: ( None of this information addresses the question of WHY )
 
@@ -135,6 +65,41 @@ mutate the referenced object, the value that `greet` references remains
 `Hey!`.
 
 }}}
+{{{  NOTE-TAKING PROCEDURE
+
+1. As I read through the material, I summarize concepts into `question /answer`
+   pairs. A `question` creates a distinct part of an overall topic. The `formal
+answer` is copied from the course and there primarily to ensure that my later
+summary is correct. Including the `formal answer` is also important for
+adopting a precise & simple language for my own thinking / answering. 
+
+2. I group these `question / answer` pairs together after finishing a lesson
+   and create a heading that describes the overall topic being covered. This
+'table of contents' is then compared to the study guide for throughness.
+
+3. I then answer these questions and provide examples to test my understanding.
+   I use precise language and compare my answers to the `formal answer` I
+provided earlier. When asked to provide an example, I create my own and explain
+the syntax and output with precise language. I run these code samples to ensure
+that their output is the same that I predicted.
+
+4. Then, I include lesson quizzes and place extra practice questions covering
+   those topics that I didn't answer correctly at the bottom of the notes.
+
+5. Lastly, I source additional questions and provide `my answer` for these
+   questions, treating them like actual exam questions. How long it took will
+be written. If the question is similar enough to a question covered in the
+course, a `book answer` will be included to determine if I'm being correct AND
+precise.
+
+Notes should ultimately turn into a study guide for exams and need to be:
+* comprehensive: it covers all topics in the course
+* structured: it is grouped in a way that's easy for me to understand & review
+* definitive: concept definitions and examples are provided by Launch School
+* practice: get good at answering exam questions by drilling them here
+
+}}}
+
 ______________________________________________________________________________
 
 # VARIABLES
@@ -161,6 +126,9 @@ computer program. `
     global variables
     $var = "you can reference me at any point in the program"
     constants
+
+# constant  available everywhere. Cannot be declared in method definitions
+    DATE_OF_BIRTH: "08/29/1985"
 
 
 }}}
@@ -233,6 +201,18 @@ computer program. `
 }}}
 {{{  What is variable shadowing? Provide an example.
 
+}}}
+{{{  What is mutability? What is meant by a variable being 'immutable'?
+
+`Mutable objects can be mutated - that is, their values can be altered;
+immutable objects cannot be mutated - they can only be reassigned`
+
+    Mutability is whether or not an object's value can be changed.
+    A variable being immutable means that its value cannot change.
+
+    Numbers, booleans, nil, and Range objects are immutable. In addition,
+    any class can be immutable if you don't provide methods for altering
+    its state.
 }}}
 
 
@@ -349,16 +329,90 @@ modifier-if, modifier-unless, modifier-while, modifier-until
 
 # METHODS
 {{{  What is a method?
+
 `A method is a way to perform actions repeatedly and extract this to one place`
 
-    def say(words)
-      #do something with words
+}}}
+{{{  Demonstrate how a method is used
+
+
+We define a method with the keywords `def` and `end`, specify method parameters
+inside parantheses with `()`
+
+    def greeting(phrase)
+      puts phrase
     end
 
-`words` is a parameter; it is used to access data outside of the method's
-scope within the method definition.
+And then use it by invoking with or without arguments
+
+    greeting("hi")
+
 }}}
 {{{  What are the parts of a method definition?
+
+    
+
+    def greeting(name = "Hello")
+      puts name
+    end
+
+    greeting("hi")
+
+    
+    `greeting` is the method name
+    `name` is the method parameter. It is a variable local to the method scope
+    `"Hello"` is the value `name` is assigned to when there are no arguments
+    `"hi"` is an argument to the method
+    `puts name` is the last evaluted expression in the method, therefore it
+        is returned by the method. In this case, it is 'nil'
+}}}
+{{{  What are default parameters?
+
+
+
+Default parameters are the values that you assign to method parameters
+when no arguments are passed on method invocation
+
+
+
+
+}}}
+{{{  Demonstrate how to define default parameters for a method
+
+All that is required is to assign the parameter to some arbitrary value.
+If no default value exists, the parameter will be assigned to the method's 
+argument
+
+    def greeting(word = "hi")
+      puts word 
+    end
+
+    greeting()
+    greeting("Hello")
+
+    
+
+
+}}}
+{{{  Demonstrate the relationship between method parameters and arguments
+
+
+`Parameters are the names assigned to a method's arguments; arguments are the
+values that get passed to the method`
+
+Parameters are variables local to the method scope and are assigned to the
+arguments passed in on method invocation.
+
+When we call a method with some variables, the value of those variables are
+called arguments. Variables are NOT arguments.
+
+}}}
+{{{  Do variables get passed to or returned by methods?
+
+No, variables are names/references for objects in memory. It is
+the values of these objects or the references to these objects that
+are passed to methods and returned by methods. 
+
 
 }}}
 {{{  What is the difference between implicit and explicit return values?
@@ -385,38 +439,47 @@ some methods perform an action AND have a return value. Methods like
 
 There is a distinction
 }}}
-{{{  Demonstrate how a method is used
-
-}}}
-{{{  What are default parameters?
-
-
-# default parameters
-
-    def greeting(words="hello")
-      puts words + "!"
-    end
-
-    greeting
-    # => "hello."
-
-
-}}}
 {{{  What are some commonly used methods so far?
 
 # puts
 returns nil
 
 }}}
-{{{  What on Earth is a side effect? 
+{{{  What is a side effect? 
+
+A side effect is a change outside of the local scope of a block or method.
+For example, mutating the arguments to a method.
+
 }}}
 {{{  What are some 'best practices' to use when creating methods?
+
+
+
+# method!
+When you create a method that will perform mutation, convention dictates
+that you append a '!' at the end of the method name to signify this method
+has some side effect.
+
+
+
+# side effects OR return values
+Any methods that have side effects should not also have return values or
+some other output because those features are not reflected in the method
+name. We want to be explicit about what our method does by using a descriptive
+name that maps to the one thing that the method is responsible for doing.
+
+
+
+# boolean?
+Methods that return booleans should end with a '?'
 
 }}}
 {{{  Is Ruby pass-by-value or pass-by-reference?
 # pass-by-reference vs pass-by-value
     watch the videos / articles and condense the information into takeaways
     AND record the formal concept that will asked be for on the assessment
+
+     
 
 }}}
 {{{  What is the call stack?
@@ -510,8 +573,26 @@ branch will not be executed
 }}}
 {{{  What is truthiness?
 
-`all objects other than `false` and `nil` will evaluate to `true` in an
-expression`
+
+
+
+
+
+
+
+
+`all objects other than `false` and `nil` will evaluate as `true` in a boolean
+context`
+
+
+
+
+
+
+
+
+
+
 }}}
 {{{  Provide an example of truthy/falsy values used in a conditional
 
@@ -543,54 +624,14 @@ expression`
 {{{  Provide examples of recursion
 
 }}}
-{{{  example_question
-
-
-`formal_definition`
-
-    my_answer
-
-
-
-
-}}}
-{{{  example_question
-
-
-`formal_definition`
-
-    my_answer
-
-
-
-
-}}}
-
-
-# RANDOM
-{{{  What is mutability? What is meant by a variable being 'immutable'?
-
-}}}
-{{{  example_question
-
-
-`formal_definition`
-
-    my_answer
-
-
-
-
-}}}
 
 
 # NUMBERS
+{{{  What are the two classes that Ruby uses for numbers?
 
-{{{ NUMBERS
-
-# integers
-
-# floats
+    integers and floats 
+}}}
+{{{  Demonstrate the use of common methods for numbers thus far
 
 # times
 
@@ -599,38 +640,55 @@ expression`
 # to_i
 
 # to_f
+}}}
 
+
+# TYPE CONVERSION
+{{{  What is type conversion?
+    
+    It is the act of "converting" one variable into another type,
+    like a float to an integer
+
+    4.to_f      # => 4.0
 
 }}}
-{{{  What are the two classes that Ruby uses for numbers?
+{{{  Demonstrate the use of type conversion methods
+# to_s
+    [1, 2, 3].to_s
+    # => "[1, 2, 3]"
 
-}}}
-{{{  example_question
+# to_i          to integer: interprets leading characters
+    '4 score'.to_i
+    # => 4
 
+# to_f          to float: interprets leading characters
+    'a5'.to_f
+    # => 0
 
-`formal_definition`
+# to_a          to array: returns array of 2-element arrays
 
-    my_answer
+method doesnt exist for numbers and strings!
 
+    { name: "Will", age: 37 }.to_a
+    # => [[:name, "Will"],[:age, 37]]
 
-
-
-}}}
-{{{  example_question
-
-
-`formal_definition`
-
-    my_answer
-
-
-
+# to_h     must provide a block or an array of 2-element sub-arrays
+    [[0, "alice"], [1, "bob"]].to_h
+    # => { 0 => "alice", 1 => "bob" }
 
 }}}
 
 
 # STRINGS
-{{{ STRINGS
+{{{  What is a string?
+    
+    A string is a word encapsulated by ' or "
+
+}}}
+{{{  What is string interpolation?
+
+}}}
+{{{  Demonstrate all methods of the String class used thus far
 
 # string interpolation
 
@@ -723,14 +781,6 @@ returns the result of interpreting leading characters in self as as an integer
     name = '23will'
     name.to_i
     # => 23
-
-
-
-
-
-}}}
-{{{  Demonstrate all methods of the String class used thus far
-
 }}}
 {{{  example_question
 
@@ -746,123 +796,51 @@ returns the result of interpreting leading characters in self as as an integer
 
 
 # ARRAYS
-{{{ ARRAYS
+{{{  What is an array?
 
-# syntax
-
-# properties
-
-# methods
+    syntax: 
+}}}
+{{{  What are some properties of arrays?
 
 }}}
 {{{  Demonstrate all methods of the Array class used thus far
 
-}}}
-{{{  example_question
+    numbers = [1, 2, 3]
+# size      returns the number of elements in self
+        
+    numbers.size    # => 3
 
+# push      appends self with given object
 
-`formal_definition`
+    numbers.push(4) # => [1, 2, 3, 4]
 
-    my_answer
+# pop       removes and returns the last element from self
 
+    numbers.pop     # => [4]
+    numbers         # => [1, 2, 3]
 
-
-
-}}}
-{{{  example_question
-
-
-`formal_definition`
-
-    my_answer
-
-
-
+# to_h      returns a new hash formed from self
 
 }}}
 
 
 
 # HASHES
-{{{ HASHES
+{{{  What is a hash?
 
-hash syntax
+    hashes are a collection of key-value pairs
 
-hash methods used in book
-
-}}}
-{{{  example_question
-
-
-`formal_definition`
-
-    my_answer
-
-
-
+    hash syntax: my_name = { first: "William", last: "Seipp" }
 
 }}}
-{{{  example_question
+{{{  What are some properties of a hash?
 
-
-`formal_definition`
-
-    my_answer
-
-
-
+}}}
+{{{  Demonstrate all methods of the Hash class used thus far
 
 }}}
 
 
-
-# TYPE CONVERSION
-
-{{{ TYPE CONVERSION
-
-# to_s
-    [1, 2, 3].to_s
-    # => "[1, 2, 3]"
-
-# to_i          interprets leading characters
-    '4 score'.to_i
-    # => 4
-
-# to_f          interprets leading characters
-    'a5'.to_f
-    # => 0
-
-# to_a          method doesnt exist for numbers and strings!
-    { name: "Will", age: 37 }.to_a
-    # => [[:name, "Will"],[:age, 37]]
-
-# to_h     must provide a block or an array of 2-element sub-arrays
-    [[0, "alice"], [1, "bob"]].to_h
-    # => { 0 => "alice", 1 => "bob" }
-
-}}}
-{{{  example_question
-
-
-`formal_definition`
-
-    my_answer
-
-
-
-
-}}}
-{{{  example_question
-
-
-`formal_definition`
-
-    my_answer
-
-
-
-
-}}}
 ______________________________________________________________________________
 
 # PROBLEMS
