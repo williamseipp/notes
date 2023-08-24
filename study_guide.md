@@ -144,9 +144,11 @@ computer program. `
 {{{  What is meant by 'variables as pointers'?
 
 
-`formal_definition`
+`variables dont contain values; they contain pointers to a specific area in
+memory that contains a value`
 
-    my_answer
+
+    Variables are a reference to objects stored in memory
 
 
 
@@ -177,12 +179,22 @@ computer program. `
 
 
 }}}
+{{{  What determines a variable's scope?
+
+    `Where a variable is initalized determines its scope`
+
+}}}
 {{{  How does variable scope work in methods? Provide an example
 
 
 `formal_definition`
 
-    my_answer
+    def some_method
+      name = "William"
+    end
+
+    puts name   # => this won't work. Variables initialized inside a method
+    definition are only available within the method definition.
 
 
 
@@ -191,16 +203,43 @@ computer program. `
 {{{  How does variable scope work in blocks? Provide an example
 
 
-`formal_definition`
+`outer scope variables can be accessed by inner scope`
 
-    my_answer
+    name = "william"
 
+    loop do
+      first_name = name.capitalize!
+      break
+    end
+
+    puts first_name
+
+
+    I can reference a variable initialized outside of the block inside the 
+    innter scope of the block. In this example, it is `name`. However, I
+    cannot access the variable `first_name` outside the scope of the block.
+    "Inner can use outer, but not vice versa"
 
 
 
 }}}
 {{{  What is variable shadowing? Provide an example.
+    
+    This occurs when you attempt to reference a variable within the inner
+    scope of a block but it has the same name as the block parameter. Any
+    reference to the variable of this name will be made to the block parameter
+    and not the variable in the outer scope. We can say the block parameter
+    casts a shadow on the variable in the outer scope, obscuring its 
+    visibility.
 
+    name = "will"
+
+    loop do |name|
+      puts name.upcase
+      break
+    end
+
+    
 }}}
 {{{  What is mutability? What is meant by a variable being 'immutable'?
 
@@ -441,14 +480,37 @@ There is a distinction
 }}}
 {{{  What are some commonly used methods so far?
 
-# puts
+# puts takes String arguments and displays them to the std.out which 
+# is usually a computer screen
+
 returns nil
 
 }}}
 {{{  What is a side effect? 
 
-A side effect is a change outside of the local scope of a block or method.
-For example, mutating the arguments to a method.
+
+
+
+
+
+    A side effect is some persistent change that happens outside the scope
+    of what you're currently in. An example would be the following:
+
+    def some_method(parameter)
+      # mutate the parameter
+    end
+
+    some_method(some_var)
+
+
+    While inside the scope of a method definition, you create a mutation of
+    the argument that was passed in. This is a side effect and you must
+    communicate this explicitly within your code even if its intentional.
+
+
+
+
+
 
 }}}
 {{{  What are some 'best practices' to use when creating methods?
@@ -476,13 +538,32 @@ Methods that return booleans should end with a '?'
 }}}
 {{{  Is Ruby pass-by-value or pass-by-reference?
 # pass-by-reference vs pass-by-value
-    watch the videos / articles and condense the information into takeaways
-    AND record the formal concept that will asked be for on the assessment
 
+
+
+    What Ruby does is pass the reference ( object_id ) for all arguments
+    of methods. When the argument is immutable ( like an integer ), it appears
+    that Ruby will only take the value of the argument and not mutate the
+    argument. However, if the argument is mutable ( like a String object ),
+    the method may call additional methods in the body to mutate the referenced
+    object and so, the method appears to pass by reference.
+
+    In short, Ruby appears to pass by value or reference depending on the
+    mutability of the argument but this obscures the fact that Ruby methods
+    are always passed the object_ids of arguments
      
 
 }}}
 {{{  What is the call stack?
+
+    The call stack is a data structure that keeps track of what methods
+    have been called and at what line execution deferred to another method.
+    
+    As stacks are LIFO ( last in, first out data strucutres ), the current
+    method being executed is at the top of the stack, and the first method
+    that was executed ( main ) is at the bottom of the stack. Each entry on
+    the stack contains two pieces of information; the method name and the
+    line to return to when that method is done execution
 
 # call stack
 
@@ -527,12 +608,34 @@ The call stack is used by
 # CONDITIONALS
 {{{  What is an expression and what is meant by 'return'?
 
+
+    an expression is code that can be evaluated to some value. They could
+    be said to 'return' a value but thats not precise; they evaluate to
+    some value, whether it is a boolean, truthy value, or something...............
+
+
+    Here is an example:    a || b
+
+    This is a conditional expression; we are expressing some logic based on
+    the boolean representation of the variables 'a' and 'b' and if either of
+    them are 'true' or 'truthy', the expression evaluates to 'true' or 'truthy'
+
+
 `Ruby expressions always return a value`
     
     an expression is code that can be evaluated to some value, even if its
     an error message or nil
 }}}
 {{{  What is a conditional expression?
+
+    A conditional expression includes conditional operators like ! or && or
+    || or >= to compare one or more operands so that the expression as a whole
+    evaluates to a boolean value or some 'truthy' value. 
+
+    They are designed to be evaluated by conditional statements that execute
+    a branch of code based upon the output
+
+
 
 }}}
 {{{  Provide examples of all conditional expressions used thus far
@@ -541,10 +644,10 @@ The call stack is used by
 }}}
 {{{  What is nil?
 
+    In Ruby, nil is the absence of value. 
+    A variable that is not initalized with some value has the default
+    value of nil.
 
-``
-    
-    In Ruby, nil is the absence of value
 }}}
 {{{  Provide an example of nil used in a conditional expression. What happens?
 
@@ -629,17 +732,40 @@ context`
 # NUMBERS
 {{{  What are the two classes that Ruby uses for numbers?
 
-    integers and floats 
+    integers and floats
 }}}
 {{{  Demonstrate the use of common methods for numbers thus far
 
 # times
 
+
+    2.times { |number| puts number }
+
+    An important distinction must be made; `number` will reference
+    a range of integers that start at 0 and end with the n-1, where n is the
+    integer value of the object. In the above example, this would be 0, 1
+
+
 # to_s
+
+    2.to_s      # => "2"
+
+    
 
 # to_i
 
+
+    3.14.to_i   # => 3
+
+
 # to_f
+
+
+    3.to_f      # => 3.0
+
+
+
+
 }}}
 
 
@@ -682,13 +808,33 @@ method doesnt exist for numbers and strings!
 # STRINGS
 {{{  What is a string?
     
-    A string is a word encapsulated by ' or "
-
+    A sequence of characters grouped by ' or " into a single object. We can
+    think of them as 'words' but this is incorrect, as "123" is a string but
+    isnt a word in the common sense
+ 
 }}}
 {{{  What is string interpolation?
 
+
+
+    String interpolation is a way to include the String value that variables
+    reference in a larger string in a convenient manner. Here's an example:
+
+    name = "Will"
+
+    puts "Hello everyone, my name is #{will}"
+
+
+    We use the #{} marks to enclose a variable name in order to concatenate
+    the String value of the variable within the larger String being passed
+    to the `puts` method invocation
+
+
+
+
 }}}
 {{{  Demonstrate all methods of the String class used thus far
+
 
 # string interpolation
 
@@ -781,17 +927,6 @@ returns the result of interpreting leading characters in self as as an integer
     name = '23will'
     name.to_i
     # => 23
-}}}
-{{{  example_question
-
-
-`formal_definition`
-
-    my_answer
-
-
-
-
 }}}
 
 
