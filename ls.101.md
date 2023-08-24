@@ -1,4 +1,4 @@
-{{{ LESSON 1
+{{{  LESSON 1
 ### Preparations
 
 Being social has many benefits, so get started early. Ask specific questions
@@ -32,7 +32,7 @@ end
 ```
 }}}
 
-{{{   LESSON 2
+{{{  LESSON 2
 ### TOC
 ### Small Programs
 ### Walk-through: calculator
@@ -487,7 +487,7 @@ Being a good developer comes from experience, not searching for a list
 
 }}}
 
-{{{ LESSON 3
+{{{  LESSON 3
 ## Question1: mutation
 ## Question2: explain difference between ! and ? 
 ## Question3: mutation
