@@ -255,116 +255,6 @@ immutable objects cannot be mutated - they can only be reassigned`
 }}}
 
 
-# OPERATORS
-{{{  What is an operator?
-
-}}}
-{{{  Provide examples of numeric operators
-
-# numeric             **  *   /   %   +   -   divmod
-
-    a ** b
-    a * b
-    a / b
-    a % b               modulo: pos/neg depends on b
-    a.remainder b       remainder: pos/neg depends on a
-    a.divmod b          divmod: [quotient, remainder]
-    a + b
-    a - b
-}}}
-{{{  Provide examples of conditional operators
-
-# conditional         ==  !=  <   >   <=  >=  ? :
-
-    ==                  equality
-    !=                  not equal
-    <, >, <=, >=, <=>   greater/less than
-}}}
-{{{  Provide examples of assignment operators. Where are they most common? 
-
-# assignment          +=  -=  *=
-
-    =
-    +=              left operand gets result
-    -=
-    *=
-    /=      
-    %=
-    **=
-}}}
-{{{  Demonstrate parallel assignment. Is it useful?
-# parallel assignment
-    a, b, c = 10, 20, 30
-
-}}}
-{{{  Provide examples of logical operators. Demonstrate short-circuiting 
-
-# logical             !   &&  ||
-
-    &&              TRUE && TRUE
-    ||              TRUE OR FALSE
-    !               NOT
-    !!              turns values into their boolean equivalent
-
-# short-circuit evaluation
-the && and || operators use short-circuit evaluation
-the return value is always the value of the operand evaluated last
-
-they can work with truthy values and return truthy values too!
-
-    3 || 'foo'      # => 3
-    3 && 'foo'      # => 'foo'
-    nil || 'foo'    # => 'foo'
-    'foo' && nil    # => nil
-
-you can coerce truthy values into booleans when you need it:
-
-    boolean_value = !!('foo' || nil)
-
-}}}
-{{{  Provide examples of String operators. Are they useful?
-
-# string
-
-#       +   concatenation: 
-    `first_name + ' Seipp`
-
-#       *   returns a new String containing integer copies of itself 
-    `'hello' *3`  
-}}}
-{{{  What is operator precedence? Why is it important to know?
-
-Operators with highest precedence will get evaluated before those with 
-lower and bind those operands. Good examples:
-    
-    ( 'foo' && 'bar' ) || 'baz'
-    ( 3 * 2 ) + 7
-}}}
-{{{  What are some good tips for working with / trying to remember precedence?
-
-!, ~, unary +
-**
-unary -
-*, /, %
-+, -
-<<, >>
-&
-|, ^
->, >=, <, <=
-<=>, ==, ===, !=, =~, !~
-&&
-||
-.., ...
-?, :
-modifier-rescue
-=, +=, -=, etc.
-defined?
-not
-or, and
-modifier-if, modifier-unless, modifier-while, modifier-until
-{ } blocks
-}}}
-
 
 # METHODS
 {{{  What is a method?
@@ -628,6 +518,12 @@ The call stack is used by
 }}}
 {{{  What is a conditional expression?
 
+`A conditional is a fork in the road`
+
+`Conditionals are formed using a combination of if statements and comparison
+and logical operators. They are basic logical structures that are defined with
+the reserved words if, else, elsif, and end`
+
     A conditional expression includes conditional operators like ! or && or
     || or >= to compare one or more operands so that the expression as a whole
     evaluates to a boolean value or some 'truthy' value. 
@@ -640,6 +536,25 @@ The call stack is used by
 }}}
 {{{  Provide examples of all conditional expressions used thus far
 
+    name = "Will"
+
+    if name == "William"
+      puts "my name is #{name}"
+    else
+      puts "my name isn't William, it is #{name}!"
+    end
+
+    puts "my name is William" if name == "William"
+
+
+    case name
+    when "William"
+      puts "my name is #{name}"
+    when "Will"
+      puts "this what friends call me: #{name}"
+    else
+      puts "{name} is not something I go by"
+    end
 
 }}}
 {{{  What is nil?
@@ -684,9 +599,15 @@ branch will not be executed
 
 
 
-`all objects other than `false` and `nil` will evaluate as `true` in a boolean
-context`
+`In Ruby, every expression evaluates as true when used in flow control, except
+for false and nil`
 
+    a = 5
+    if a
+      puts "how is a true?"
+    else
+      puts "a must be either false or nil!"
+    end
 
 
 
@@ -699,26 +620,233 @@ context`
 }}}
 {{{  Provide an example of truthy/falsy values used in a conditional
 
+    name = "Will"
+
     if name
       puts 'name was truthy'
     else
       puts 'name was falsey'
     end
 
+
+    name references a String object, not boolean. However, as all objects
+    that are not false or nil will evaluate as truthy in a conditional
+    expression, `name` will evaluate as truthy and cause the statement
+    below it to execute
+
+}}}
+
+
+# OPERATORS
+{{{  What is an operator?
+    
+    An operator is a token that represents an operation to be performed on
+    one or more operands.
+
+}}}
+{{{  Provide examples of numeric operators
+
+# numeric             **  *   /   %   +   -   divmod
+
+    a ** b
+    a * b
+    a / b
+    a % b               modulo: pos/neg depends on b
+    a.remainder b       remainder: pos/neg depends on a
+    a.divmod b          divmod: [quotient, remainder]
+    a + b
+    a - b
+}}}
+{{{  Provide examples of comparison operators
+
+# conditional         ==  !=  <   >   <=  >=  ? :
+
+    ==                  equality
+    !=                  not equal
+    <, >, <=, >=, <=>   greater/less than
+}}}
+{{{  Provide examples of equality operators
+    
+    a == b     returns 'true' or 'false' based on whether
+                a and b have the same value
+
+    a != b     returns 'true' if a and b do not have the same values 
+
+    !a         returns 'true' if a is false
+}}}
+{{{  Provide examples of assignment operators. Where are they most common? 
+
+# assignment          +=  -=  *=
+
+    =
+    +=              left operand gets result
+    -=
+    *=
+    /=      
+    %=
+    **=
+
+    assignment operators that also perform numeric operations are most often
+    seen in loops / iteration when a variable is incremenented / decremented.
+
+    the = assignment operator is prevalent everywhere, and assigns variables
+    to an object
+
+}}}
+{{{  Demonstrate parallel assignment. Is it useful?
+# parallel assignment
+    a, b, c = 10, 20, 30
+
+}}}
+{{{  Provide examples of logical operators. Demonstrate short-circuiting 
+
+# logical             !   &&  ||
+
+    &&              TRUE && TRUE
+    ||              TRUE OR FALSE
+    !               NOT
+    !!              turns values into their boolean equivalent
+
+# short-circuit evaluation
+the && and || operators use short-circuit evaluation
+the return value is always the value of the operand evaluated last
+
+they can work with truthy values and return truthy values too!
+
+    3 || 'foo'      # => 3
+    3 && 'foo'      # => 'foo'
+    nil || 'foo'    # => 'foo'
+    'foo' && nil    # => nil
+
+you can coerce truthy values into booleans when you need it:
+
+    boolean_value = !!('foo' || nil)
+
+}}}
+{{{  Provide examples of String operators. Are they useful?
+
+# string
+
+#       +   concatenation: 
+    `first_name + ' Seipp`
+
+#       *   returns a new String containing integer copies of itself 
+    `'hello' *3`  
+}}}
+{{{  What is operator precedence? Why is it important to know?
+
+Operators with highest precedence will get evaluated before those with 
+lower and bind those operands. Good examples:
+    
+    ( 'foo' && 'bar' ) || 'baz'
+    ( 3 * 2 ) + 7
+
+    remember CELL
+
+    Comparison:  < <= > >=
+    Equality:   != ==
+}}}
+{{{  What are some good tips for working with / trying to remember precedence?
+
+CELL
+
+comparison
+equality
+logical AND
+logical OR
+
+!, ~, unary +
+**
+unary -
+*, /, %
++, -
+<<, >>
+&
+|, ^
+>, >=, <, <=
+<=>, ==, ===, !=, =~, !~
+&&
+||
+.., ...
+?, :
+modifier-rescue
+=, +=, -=, etc.
+defined?
+not
+or, and
+modifier-if, modifier-unless, modifier-while, modifier-until
+{ } blocks
 }}}
 
 
 # LOOPS
 {{{  What is a loop?
 
+`A repetitive execution of a piece of code for a given amount of reps or until
+a certain condition is met` 
+
+    a defined, repetitive execution of code
+
+
 }}}
 {{{  Provide examples of different types of loops
 
+    loop do
+      puts "this is infinite"
+    end
+
+    loop do
+      puts "this will execute once"
+      break
+    end
+
+    loop do
+      puts "this will execute one more times"
+      break if continue == true
+    end
+
+    is_raining = true 
+
+    while is_raining
+      puts "rain rain, go away"
+    end
+    
+
+    until is_raining == false
+      puts "rain rain, go away"
+    end
+
+
+    for i in 1..10 do
+      puts "hi"
+    end
+
+    **note** for loops return the collection, much like
+    many methods of the Enumerator module returns self
+    
 }}}
-{{{  What is iteration?
+{{{  What are some keywords that can be included in loops?
+
+    break: exits the loop ( usually provided with if statement)
+    next: skips iteration ( provided with an if statement)
+}}}
+{{{  What are iterators?
+
+
+
+    Iterators are methods of the Enumerable module that allow looping
+    over a set of data and allow you to operate on each element in the
+    collection.
+
 
 }}}
-{{{  Provide examples of different types of iteration
+{{{  Provide some examples of iterators
+
+
+    array.each { |element| puts element }
+
+    array.select { |element| element > 2 }
+
 
 }}}
 {{{  What is recursion?
