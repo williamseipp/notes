@@ -1161,27 +1161,179 @@ This example demonstrates the concept of pass-by-reference
 
 
 }}}
-{{{  example_question
+{{{  problem 1
+
+def test(str)
+  str += '!'
+  str.downcase!
+end
+
+test_str = 'Written Assessment'
+test(test_str)
+puts test_str
+
+}}}
+{{{  problem 2
+
+    def plus(x,y)
+    x = x + y
+    end
+    
+    a = 3
+    b = plus(a,2)
+
+    puts a
+    puts b
+}}}
+{{{  problem 3
+
+def increment(x)
+  x << 'b'
+end
+
+y = 'a'
+increment(y)
+puts y
+
+}}}
+{{{  problem 4
+
+    def change_name(name)
+      name = 'bob'   # does this reassignment change the object outisde the method?
+    end
+
+    name = 'jim'
+    change_name(name)
+    puts name
+
+}}}
+{{{  problem 5
+
+def cap(str)
+    str.capitalize!   # does this affect the object outside the method?
+end
+
+name = "jim"
+cap(name)
+puts name
+
+}}}
+{{{  problem 6
 
 
-`formal_definition`
+a = [1, 3]
+b = [2]
 
-    my_answer
+arr = [1,b]
+arr a[1] = 5
+
+arr
+
+}}}
 
 
+# mutating methods
+{{{  problem 7
+
+    def fix(value)
+      value.upcase!
+      value.concat('!')
+      value
+    end
+
+    s = 'hello'
+    t = fix(s)
+
+}}}
+{{{  problem 8
+
+    def fix(value)
+      value << 'xyz'
+      value = value.upcase
+      value.concat('!')
+    end
+
+    s = 'hello'
+    t = fix(s)
 
 
 }}}
-{{{  example_question
+{{{  problem 9
 
+    def fix(value)
+      value = value.upcase!
+      value.concat('!')
+    end
 
-`formal_definition`
+    s = 'hello'
+    t = fix(s)
 
-    my_answer
+}}}
+{{{  problem 10
 
+    def fix(value)
+      value[1] = 'x'
+      value
+    end
 
+    s = 'abc'
+    t - fix(s)
 
+}}}
+{{{  problem 11
+
+    def a_method(string)
+      string << 'world'
+    end
+
+    a = 'hello'
+    a_method(a)
+
+    p a
+
+}}}
+{{{  problem 12
+
+    a = %w(a b c )
+    a[1] '-'
+    p a
+
+}}}
+{{{  problem 13
+
+    def add_name(arr, name)
+      arr = arr + [name]
+    end
+
+    names = ['bob', 'kim']
+    add_name(names, 'jim')
+    puts names
 
 }}}
 
+# truthiness
+{{{  problem 14
 
+    a = "Hello"
+    if a
+      puts "Hello is truthy"
+    else
+      puts "Hello is falsey"
+    end
+
+}}}
+{{{  problem 15
+
+    def test
+      puts "written assessment"
+    end
+
+    var = test
+    
+    if var
+      puts "written assessment"
+    else
+      puts "interview"
+    end
+
+}}}
