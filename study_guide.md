@@ -1107,127 +1107,159 @@ returns the result of interpreting leading characters in self as as an integer
 ______________________________________________________________________________
 
 # PROBLEMS
-{{{ problem 1: mutation
-```ruby
 
-
-
-def fix(value)
-  value.upcase!
-  value.concat('!')
-  value
-end
-
-s = 'hello'
-t = fix(s)
-```
-
-What does this do and why?
-
-{{{  book answer
-We start by passing `s` to `fix`; this binds the String represented by
-`'hello'` to `value`. In addition, `s` and `value` are now aliases for the
-String.
-
-Next, we call `#upcase!` which converts the String to uppercase. A new String
-is not created; the String that is referenced by both `s` and `value` now
-contains the value `'HELLO'`
-
-We then call `#concat` on `value`, which also mutates `value` instead of
-creating a new String; the String now has a value of `"HELLO!"`, and both `s`
-and `value` reference that object.
-
-Finally, we return a reference to the String and store it in `t`
-
-The only place we create a new String in this code is when we assign `hello`
-to `s`. The rest of the time, we operate directly on the object, mutating it
-as needed. Thus, both `s` and `t` reference the same `String`, and that
-`String` has the value `'HELLO!'`
-
-}}}
-{{{  my answer: m:ss
-On line 7, the local variable `s` is assigned the String `'hello'`
-This value gets passed to `fix` on line 8, and the method parameter
-`value` is bound to the String `'hello'`. This String then calls the `#upcase!`
-method on itself on line 2, changing itself to `HELLO`. On line 3, the same
-String calls the `#concat` method on itself with the String `'!'` as an 
-argument, changing itself to `'HELLO!'`. On line 4, the reference to this
-String is returned by the method, which then gets assigned to the local 
-variable `t`. As a result, both `s` and `t` reference the same String `HELLO!`
-
-This example demonstrates the concept of pass-by-reference
-
-}}}
-
-
-}}}
 {{{  problem 1
 
-def test(str)
-  str += '!'
-  str.downcase!
-end
+ 1   def test(str)
+      str += '!'
+      str.downcase!
+    end
 
-test_str = 'Written Assessment'
-test(test_str)
-puts test_str
+    test_str = 'Written Assessment'
+    test(test_str)
+    puts test_str
+
+
+On line 5, the local variable `test_str` is initialized to the String 
+`'Written Assessment'` and this value is passed as an argument to `test` on
+line 6. We can see that from the method definition that the method parameter
+`str` and the local variable `test_str` both reference the same String. On line
+2 however, the method parameter `str` is reassigned to a new String because of the
+`+=` method invocation. Any further changes within the method to the String
+referenced by `str` has nothing to do with the original argument passed in.
+
+That is why on line 8, when the method `puts` is called with the argument of
+`test_str`, the output is `Written Asessment`; no mutation of the original
+object has occurred.
+
+This example demonstrates the concept that assignment never changes the
+referenced object.
 
 }}}
 {{{  problem 2
 
-    def plus(x,y)
-    x = x + y
+ 1   def plus(x,y)
+      x = x + y
     end
     
-    a = 3
+5    a = 3
     b = plus(a,2)
 
     puts a
     puts b
+
+
+On line 5, the local variable `a` is initialized to 3. We initialize another
+variable `b` on line 6 with the return value of the `plus` method call with
+the given arguments. As the arguments are the values of `a` and `2`, the
+method parameters on line 1 `x` and `y` reference these values. 
+
+On line 2, the `+` method is called and the return value of `5` is what the
+variable `x` is assigned to. In turn, this is return value that the local
+variable `b` gets assigned to.
+
+On line 8, the value of `a` is passed as an argument to `puts` and outputs
+`3`. On line 9, the value of `b` is passed as an argument to `puts` and outputs
+`5`
+
+This example demonstrates the concept of pass-by-value in Ruby.
+
+
 }}}
 {{{  problem 3
 
-def increment(x)
-  x << 'b'
-end
+ 1   def increment(x)
+    x << 'b'
+    end
 
-y = 'a'
-increment(y)
-puts y
+5    y = 'a'
+    increment(y)
+    puts y
+
+
+On line 5, the local variable `y` is assigned to the String `'a'`. On line 6,
+the method `increment` is invoked and the value of `y` is passed as an
+argument. 
+
+The method parameter `x` on line 2 references this String, and it calls the
+`<<` method on itself to concatenate the String `'b'` to itself. As the String
+object that `y` references is now `'ab'`; when it is passed to the `puts`
+method call on line 7, the output is `ab` and the return value is `nil`
+
+This example demonstrates the concept of pass-by-reference in Ruby.
 
 }}}
 {{{  problem 4
 
-    def change_name(name)
+ 1   def change_name(name)
       name = 'bob'   # does this reassignment change the object outisde the method?
     end
 
-    name = 'jim'
+ 4   name = 'jim'
     change_name(name)
     puts name
+
+On line 4, the local variable `name` is initalized to the String `'jim'`. On
+line 5, we invoke the method `change_name` and pass the value of `name` as
+an argument. 
+
+We can see that the method parameter `name` defined on line 1 is bound to the
+argument `'jim'`. On line 2, the method parameter `name` is reassigned to a
+new String `'bob'`. As the String referenced by the local variable `name` has
+not been modified, when it is passed as an argument to `puts` on line 6, the
+output will be `jim` and the return value will be `nil`. 
+
+This examples demonstrates that assignment never changes the referenced object.
 
 }}}
 {{{  problem 5
 
-def cap(str)
-    str.capitalize!   # does this affect the object outside the method?
-end
+ 1   def cap(str)
+      str.capitalize!   # does this affect the object outside the method?
+    end
 
-name = "jim"
-cap(name)
-puts name
+  5  name = "jim"
+    cap(name)
+    puts name
+
+
+On line 5, we initialize the local variable `name` to the String `"jim"`. On
+line 6, we invoke the `cap` method and pass the value of `name` to it as an
+argument.
+
+The method parameter `str` on line 1 is bound to this argument `"jim"`. On
+line 2, the String `"jim"` calls the mutating `capitalize!` method on itself.
+Therefore, the value that `name` and `str` both reference has been mutated to
+`"JIM"`. This String is passed as an argument to the `puts` method on line 7
+and the output is `JIM` and the return value is `nil`.
+
+This example demonstrates the concept of pass-by-reference in Ruby. 
 
 }}}
-{{{  problem 6
+{{{  problem 6 THIS IS BAD QUESTION. YOU CANT REFERENCE ELEMENTS OF AN ARRAY
+        BY VALUE, ONLY BY INDEX WHICH ARE NUMBERS
 
 
-a = [1, 3]
-b = [2]
+ 1   a = [1, 3]
+    b = [2]
+    
+ 3   arr = [a,b]
+    arr a[1] = 5
+    
+ 6   arr
 
-arr = [1,b]
-arr a[1] = 5
 
-arr
+On line 1, the local variable `a` is initialized to the array `[1, 3]`. On
+line 2, the local variable `b` is initialized to the array `[2]`. On line 3,
+the local variable `arr` is assigned to a new array containing both arrays
+referenced by the variables `a` and `b`. This array object is `[[1, 3], [2]]`.
+On line 4, the second element of the sub array `a` within `arr` is reassigned
+to a new value `5`. The local variable `arr` now points to an array whose 
+value has changed to `[[1, 5], [2]]`, 
+
+This example demonstrates the concept that indexed assignment is mutating.
+
+
 
 }}}
 
@@ -1235,14 +1267,28 @@ arr
 # mutating methods
 {{{  problem 7
 
-    def fix(value)
+ 1   def fix(value)
       value.upcase!
       value.concat('!')
       value
-    end
+ 5   end
 
-    s = 'hello'
+ 7   s = 'hello'
     t = fix(s)
+
+
+On line 7, the local variable `s` is assigned to the String object `'hello'`.
+On line 8, we invoke the `fix` method and pass the value of `s` as an argument.
+
+This value `'hello'` is also referenced by the method parameter `value` on
+line 1; both `value` and `s` reference the same String. On line 2, we call the
+`upcase!` method on this String and mutate it to `'HELLO'`. On line 3, we
+call the `concat` method with the String `!` as an argument, appending itself
+such that the local variable `s` and `value` both reference the String
+`'HELLO!'`. The reference to this String is the return value of the `fix`
+method call and now the local variable `t` is now assigned to this String.
+
+This example demonstrates the concept of pass-by-reference.
 
 }}}
 {{{  problem 8
@@ -1337,3 +1383,80 @@ arr
     end
 
 }}}
+
+IS SPECIFIC SYNTAX RELEVANT TO THE CONCEPT EXPLAINED?
+WHAT IS THE CONCEPT?
+WHAT IS THE OUTPUT?    
+
+{{{  concepts
+
+* indexed assignment is mutating
+ - its actually syntactic sugar for a method defined on the calling object's
+    class
+
+* concatentation is mutating
+
+* setters are mutating
+
+* local variable scoping rules with blocks
+ - Inner scope variables cannot be accessed in outer scope
+ - Outer scope variables can be accessed in inner scope
+ - peer scopes do not conflict
+
+* local variable scoping rules with methods
+ - the only way a method definition can access local variables is by passing
+    them as arguments.
+* variables as pointers
+* variable shadowing
+
+* pass by value
+* pass by reference
+* mutability
+
+* truthiness 
+ - every value apart from `false` and `nil` is considered truthy and evaluates
+    as `true` in a boolean context
+
+
+
+- always state the return value of `nil` when explaining what the output of
+    puts is
+
+
+- puts "hello"
+
+
+
+}}}
+
+{{{  explain method invocation
+
+```ruby
+puts "hello"
+
+```
+
+We are calling the `puts` method and pass it the String `"hello"` as an
+argument. This invocation will output `hello` and return `nil`
+
+}}}
+{{{  explain loop iteration
+
+```ruby
+i = 10
+loop do
+  i -= 1
+  break if i == 0
+end
+```
+
+On line 2, we are calling the method `loop` and pass it a `do..end` block as an
+argument. On line 3, we are reassigning the local variable `i` to the
+return value of the `-` method called on the local variable `i` with the
+integer `1` passed to it as an argument. 
+
+We break out of the loop with the keyword `break` if the value that `i`
+references is equal to `0`.
+
+}}}
+
