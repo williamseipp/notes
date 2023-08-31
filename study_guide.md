@@ -1,3 +1,4 @@
+# LANGUAGE
 # VARIABLES
 # OPERATORS
 # METHODS
@@ -101,6 +102,38 @@ Notes should ultimately turn into a study guide for exams and need to be:
 }}}
 
 ______________________________________________________________________________
+
+# LANGUAGE
+{{{  example of a method parameter calling a method that doesnt mutate the caller
+
+    1. def fix(value)
+    2.   value = value.upcase
+    3. end
+    4.
+    5. s = 'hello'
+    6. t = fix(s)
+______________________________________________________________________________
+    On line 2, we assign the return value of `value.upcase` back to `value`.
+    This call to `upcase` creates a copy of the String referenced by `value`,
+    mutates it, and returns the reference to this new String. We then bind
+    `value` to the reference.
+
+}}}
+{{{  example of a method parameter calling a mutating method
+
+    1. def fix(value)
+    2.   value = value.upcase!
+    3. end
+    4.
+    5. s = 'hello'
+    6. t = fix(s)
+______________________________________________________________________________
+    On line 2, we call the method `upcase!` on `value`, mutating the String
+    that `value` references. Then, `value` is reassigned to this String.
+
+}}}
+
+
 
 # VARIABLES
 {{{  What are variables?
@@ -452,8 +485,8 @@ Methods that return booleans should end with a '?'
     As stacks are LIFO ( last in, first out data strucutres ), the current
     method being executed is at the top of the stack, and the first method
     that was executed ( main ) is at the bottom of the stack. Each entry on
-    the stack contains two pieces of information; the method name and the
-    line to return to when that method is done execution
+    the stack contains two pieces of information; the method name that was
+    executing and where it stopped executing ( to return back to )
 
 # call stack
 
@@ -746,35 +779,60 @@ lower and bind those operands. Good examples:
     Comparison:  < <= > >=
     Equality:   != ==
 }}}
+{{{  Demonstrate an example of {} precedence producing unexpected output
+
+    array = [1, 2, 3]
+
+    p(array.map) do |num|
+      num + 1                           #  <Enumerator: [1, 2, 3]:map>
+    end                                 #  => <Enumerator: [1, 2, 3]:map>
+
+    p(array.map { |num| num + 1 })      # [2, 3, 4]
+                                        # => [2, 3, 4]
+
+}}}
 {{{  What are some good tips for working with / trying to remember precedence?
 
-CELL
+    Arithmetic operators have the same precedence in Ruby as they do in
+    mathematics. PEMDAS applies here.
 
-comparison
-equality
-logical AND
-logical OR
+    
+    Here are operators, starting from highest precedence
+    !
+    **
+    *   /   %
+    +   -
+    
+    <<  >>
+    &
+    |   ^
+    >   >=  <   <=
+    <=> ==  === !=  =~  !~
+    &&  ||
+    ..  ...
+    ?   :
 
-!, ~, unary +
+
+!    ~    unary +
 **
 unary -
-*, /, %
-+, -
-<<, >>
+*    /    %
++    -
+<<    >>
 &
-|, ^
->, >=, <, <=
-<=>, ==, ===, !=, =~, !~
+|    ^
+>    >=    <    <=
+<=>    ==    ===    !=    =~ !~
 &&
 ||
-.., ...
-?, :
+..    ...
+?    :
 modifier-rescue
-=, +=, -=, etc.
+=    +=    -=    etc.
 defined?
 not
-or, and
-modifier-if, modifier-unless, modifier-while, modifier-until
+or    and
+modifier-if    modifier-unless    modifier-while    modifier-until
 { } blocks
 }}}
 
@@ -850,9 +908,20 @@ a certain condition is met`
 
 }}}
 {{{  What is recursion?
+    
+    Recursion is the act of calling a method from within itself.
 
 }}}
 {{{  Provide examples of recursion
+
+    def doubler(start)
+      puts start
+      if start < 10
+        doubler(start * 2)
+      end
+    end
+
+    doubler(1)
 
 }}}
 
@@ -1061,29 +1130,99 @@ returns the result of interpreting leading characters in self as as an integer
 # ARRAYS
 {{{  What is an array?
 
-    syntax: 
+    An array is an ordered list of elements of any type
+
+    %w(apples 2 3)   # => ["apples", "2", "3"]
+
+    %w is not a method, its just special notation for convenience
 }}}
 {{{  What are some properties of arrays?
 
 }}}
 {{{  Demonstrate all methods of the Array class used thus far
 
+# +         returns a new Array with all elements of a1, then all of a2
+    
+    new_array = [1] + [2, 3, "four"]
+
     numbers = [1, 2, 3]
+
 # size      returns the number of elements in self
         
     numbers.size    # => 3
 
-# push      appends self with given object
+# push      appends self with given object ( alias for append )
 
     numbers.push(4) # => [1, 2, 3, 4]
 
+# concat    appends self with given object
+
+# shift     removes and returns the first element from self
+
+    numbers = [1, 2, 3, 4]
+    numbers.shift   # => 1
+
 # pop       removes and returns the last element from self
 
+    numbers = [1, 2, 3, 4]
     numbers.pop     # => [4]
     numbers         # => [1, 2, 3]
 
 # to_h      returns a new hash formed from self
 
+
+# include?  returns true if the given object is present in the array
+
+    a1 = [1, 2]
+    a1.include?(1)  # => true
+
+# at        returns the element at integer offset index
+
+    a1 = [1, 2]
+    a1.at(0)        # => 1
+
+# first     returns the first element of self
+
+    array = [1, 2, 3]
+    array.first     # => 1
+
+# last     returns the last element of self
+
+    array = [1, 2, 3]
+    array.last     # => 3
+
+# delete_at     deletes an element from self at the given index
+
+    number = [1, 2, 3, 4]
+    number.delete_at(0)     # => [2, 3, 4]
+
+# delete        deletes all instances of the given object from self
+
+    number = [1, 2, 4, 3, 4]
+    number.delete(4)     # => [1, 2, 3]
+    
+# flatten       returns a flat array
+
+    nested_array = [[1, 2], [3, 4]]
+    nested_array.flatten    # => [1, 2, 3, 4]
+
+# uniq          returns an array with only unique elements
+
+    duplicates = [1, 2, 1, 1, 3]
+    duplicates.uniq    # =>  [1, 2, 3]
+
+# to_s          returns the array as a new String
+
+    
+    duplicates = [1, 2, 1, 1, 3]
+    duplicates.to_s     # => "[1, 2, 1, 1, 3]"
+
+# slice         returns a sub-array; does not modify self
+
+    duplicates = [1, 2, 1, 1, 3]
+    duplicates.slice(0, 2)      # => [1, 2]
+    duplicates.slice(0)         # => [1]
+    
 }}}
 
 
@@ -1098,8 +1237,16 @@ returns the result of interpreting leading characters in self as as an integer
 }}}
 {{{  What are some properties of a hash?
 
+    provide a key to the hash, and you will get a reference to the
+    corresponding value, if the key exists
+
 }}}
 {{{  Demonstrate all methods of the Hash class used thus far
+
+    
+    person = { name: "William", age: 38 }
+    person_array = person.to_h
+    person  # => [[:name, "William",], [ :age, 38]]
 
 }}}
 
@@ -1293,49 +1440,104 @@ This example demonstrates the concept of pass-by-reference.
 }}}
 {{{  problem 8
 
-    def fix(value)
+1    def fix(value)
       value << 'xyz'
       value = value.upcase
       value.concat('!')
-    end
+6    end
 
-    s = 'hello'
+8    s = 'hello'
     t = fix(s)
+
+On line 8, the local variable `s` is assigned to the String `'hello'`. On line
+9, the `fix` method is invoked and `'hello'` is passed as an argument to it. 
+The method definition that starts on line 1 has a method parameter `value` 
+that is bound to this argument, such that it references the same String as `s`.
+
+On line 2, this String calls the `<<` method to append the String argument 
+`'xyz'` to itself and the String has changed into `'helloxyz'`. On line 3,
+this String calls the `upcase` method and returns a new String `'HELLOXYZ'`;
+and the variable `value` gets reassigned to this new String. On line 4, this
+String calls the `concat` method with `'!'` as a parameter, mutating the String
+to the value `'HELLOXYZ!'`. This string is the return value of the method and
+the local variable `t` on line 9 is assigned to this String. So `s` references
+the String `'helloxyz'` and `t` references the String `'HELLOXYZ!'`.
+
+This example demonstrates the concept of pass-by-reference in Ruby, and the
+fact that assignment does not mutate the referenced object.
 
 
 }}}
 {{{  problem 9
 
-    def fix(value)
+ 1   def fix(value)
       value = value.upcase!
       value.concat('!')
     end
 
-    s = 'hello'
+ 6   s = 'hello'
     t = fix(s)
+
+On line 7, the String that the local variable `s` references is passed as an
+argument to the invocation of the `fix` method. We can see on line 1 that the
+method parameter `value` also references the String argument `'hello'`.
+
+On line 2, this String calls the `upcase!` method on itself such that its
+value is `'HELLO'`, and `value` is reassigned to this String. On line 3, this
+String calls the `concat` method with `'!'` as an argument, mutating itself
+into `HELLO!`. On line 7, the local variable `t`
+is also assigned to this String, such that both variables `s` and `t` 
+reference the same String `'HELLO!'
+
+This example demonstrates the concept of pass-by-reference and mutation
 
 }}}
 {{{  problem 10
 
-    def fix(value)
+ 1   def fix(value)
       value[1] = 'x'
       value
-    end
+ 4   end
 
     s = 'abc'
     t - fix(s)
 
+On line 6, the local variable `s` is assigned the String `'abc'`. This value
+is then passed as an argument to the method invcation `fix` on line 7. Both
+`s` and the method parameter `value` point to this String.
+
+On line 2, this String calls the `[]` method, changing its character at the
+given index `1` to the String argument `'x'`, mutating itself to `'axc'`.
+The reference to this String is returned by the method, and the local variable
+`t` is assigned to it on line 7. Both variables `s` and `t` reference this
+String `'axc'`
+
+This example demonstrates that indexed assignment is mutating.
+
 }}}
 {{{  problem 11
 
-    def a_method(string)
+ 1   def a_method(string)
       string << 'world'
     end
 
-    a = 'hello'
+ 5   a = 'hello'
     a_method(a)
 
-    p a
+ 8   p a
+
+
+
+On line 5, the local variable `a` is assigned the String `'hello'`. On line 6,
+this String gets passed as an argument to the method invocation of `a_method`
+and the method parameter `string` is bound to it.
+
+On line 2, this String calls the `<<` method and appends itself with the String
+argument `'world'` such that its value is now `'helloworld'`. When this String
+is passed as an argument to the method invocation of `p` on line 8, it outputs
+`'helloworld'` and returns `nil`.
+
+This example demonstrates the concept of pass-by-reference.
 
 }}}
 {{{  problem 12
@@ -1344,6 +1546,14 @@ This example demonstrates the concept of pass-by-reference.
     a[1] '-'
     p a
 
+
+On line 1, the local variable `a` is assigned to the Array `["a", "b", "c"]`.
+On line 2, this Array calls the `[]` method to change the String at the given
+index of `1` to the String argument `'-'` so that it is now `["a", "-", "c"]`.
+When this array is passed as an argument to the method invocation `p` on line
+3, it outputs `["a", "-", "c"]`
+
+This example demonstrates the concept that indexed assignment is mutating.
 }}}
 {{{  problem 13
 
@@ -1351,9 +1561,29 @@ This example demonstrates the concept of pass-by-reference.
       arr = arr + [name]
     end
 
-    names = ['bob', 'kim']
+5    names = ['bob', 'kim']
     add_name(names, 'jim')
     puts names
+
+On line 5, the local variable `names` is assigned an Array `['bob', 'kim']`.
+On line 6, the `add_name` method is invoked and passed the array referenced by
+`names` and the String `'jim'` as arguments. We can see from the method
+definition on line 1 that these arguments are bound to the method parameters
+`arr` and `name`, respectively.
+
+On line 2, the Array referenced by `arr` calls the `+` method to return a new
+Array with all elements in itself and the other newly created Array `[name]`.
+The variable `arr` is reassigned to this new Array `['bob', 'kim', 'jim']`
+but no variable is assigned to this new Array. As the method `add_name` created
+a new Array but didn't mutate its Array argument, the local variable `names`
+remains unchanged from the value it was initialized with. So, when its value
+is passed as an argument to the `puts` method invocation on line 7,
+`bob`
+`kim`
+is output and `nil` is returned.
+
+This example demonstrates the concept that assignment does not mutate the
+referenced object.
 
 }}}
 
@@ -1367,26 +1597,45 @@ This example demonstrates the concept of pass-by-reference.
       puts "Hello is falsey"
     end
 
+On line 1, the local variable `a` is assigned to the String `"Hello"`. Because
+the variable `a` is not nil or false, it evaluates as true in the conditional
+on line 2. Therefore, the code on line 3 executes; and a String `"Hello is truthy"`
+is passed as an argument to the method invcation `puts`. The output is 
+`Hello is truthy` and `nil` is returned.
+
+This example demonstrates the concept of truthiness. 
+
 }}}
 {{{  problem 15
 
     def test
       puts "written assessment"
     end
-
+4
     var = test
-    
+6    
     if var
       puts "written assessment"
-    else
+9    else
       puts "interview"
     end
 
+On line 5, the local variable `var` is assigned to the return value of the
+`test` method invocation.  In the `test` method definition on line 2, the call
+to the `puts` method causes the `test` method to return `nil`, and this is the
+value of `var`.
+
+So, when `var` is evaluated in the conditional on line 7, the expression will
+be evaluated as falsey, causing the code on line 10 to execute. On line 10,
+the String `"interview"` is passed as an argument to the `puts` method, causing
+`interview` to be output and `nil` to be returned.
+
+This example demonstrates the concept of truthiness, specifically that nil
+will be evaluated as falsey in a conditional.
+
+
 }}}
 
-IS SPECIFIC SYNTAX RELEVANT TO THE CONCEPT EXPLAINED?
-WHAT IS THE CONCEPT?
-WHAT IS THE OUTPUT?    
 
 {{{  concepts
 
