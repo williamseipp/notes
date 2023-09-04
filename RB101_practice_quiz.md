@@ -2,28 +2,33 @@ topics covered
 
 # variable shadowing and array iteration
 ```
-# create a variable
-# create an array
-# iterate through the array and use a block parameter with same name as variable
-# attempt to reference the variable in the outer scope
+
+name = "Will"
+people = ["Alice", "Bob"]
+
+people.each { |name| puts name }
 # ask what output is and why, and what concept is being demonstrated
 
 ```
 # variables as pointers and string interpolation
 ```
-# create a variable that points to a String
-# create another variable that points to the same String
-# use String interpolation to create a full sentence using the variable 
+name = "Will"
+person = name
+puts "My name is #{person}"
 # ask what output is and why, and what concept is being demonstrated
 ```
 
 # use array select method with a block that returns nil
 
 ```
-# create an array of Strings
-# call select on the array and save it as a new array
-# make puts method call the last line in the block
-# pass new array to puts method
+all_numbers = [2, 4, 7, 53, 82, 10]
+
+even_numbers = all_numbers.select do |num|
+  number.even?
+  puts number
+end
+
+puts even_numbers
 # ask what output is and why, and what concept is being demonstrated
 ```
 
