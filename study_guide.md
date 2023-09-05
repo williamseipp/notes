@@ -530,6 +530,13 @@ The call stack is used by
 
 
 # CONDITIONALS
+{{{  What are the 3 types of conditionals we covered?
+
+    if/else statements
+    case statements
+    ternary expression
+
+}}}
 {{{  What is an expression and what is meant by 'return'?
 
 
@@ -549,24 +556,6 @@ The call stack is used by
     
     an expression is code that can be evaluated to some value, even if its
     an error message or nil
-}}}
-{{{  What is a conditional expression?
-
-`A conditional is a fork in the road`
-
-`Conditionals are formed using a combination of if statements and comparison
-and logical operators. They are basic logical structures that are defined with
-the reserved words if, else, elsif, and end`
-
-    A conditional expression includes conditional operators like ! or && or
-    || or >= to compare one or more operands so that the expression as a whole
-    evaluates to a boolean value or some 'truthy' value. 
-
-    They are designed to be evaluated by conditional statements that execute
-    a branch of code based upon the output
-
-
-
 }}}
 {{{  Provide examples of all conditional expressions used thus far
 
