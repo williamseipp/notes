@@ -330,13 +330,14 @@ And then use it by invoking with or without arguments
 }}}
 {{{  What are default parameters?
 
+When no arguments are passed to a method call, parameters have a default value
 
+    def greeting(word="hello")
+      puts word
+    end
 
-Default parameters are the values that you assign to method parameters
-when no arguments are passed on method invocation
-
-
-
+    greeting
+    greeting("G'day guvnah")
 
 }}}
 {{{  Demonstrate how to define default parameters for a method
