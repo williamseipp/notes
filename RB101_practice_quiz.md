@@ -7,7 +7,6 @@ name = "Will"
 people = ["Alice", "Bob"]
 
 people.each { |name| puts name }
-# ask what output is and why, and what concept is being demonstrated
 
 ```
 # variables as pointers and string interpolation
@@ -15,7 +14,6 @@ people.each { |name| puts name }
 name = "Will"
 person = name
 puts "My name is #{person}"
-# ask what output is and why, and what concept is being demonstrated
 ```
 
 # use array select method with a block that returns nil
@@ -30,7 +28,6 @@ end
 
 puts even_numbers
 
-# ask what output is and why, and what concept is being demonstrated
 ```
 
 # truthiness vs boolean
@@ -43,7 +40,6 @@ else
   puts "skittles"
 end
 
-# ask what output is and why, and what concept is being demonstrated
 
 ```
 # variable scopes in blocks
@@ -59,7 +55,6 @@ end
 
 puts first_name
 
-# ask what output is and why, and what concept is being demonstrated
 ```
 # method parameters vs arguments
 ```
@@ -74,54 +69,48 @@ phrase = tricky_method(greeting)
 puts greeting
 puts phrase
 
-# ask what output is and why, and what concept is being demonstrated
-```
-
-# pass by reference or pass by value?
-```
-
-# how do we trick the user in thinking an immutable object has been mutated
-#   when no method exists for this? Do I use the `+=` operator and hope
-#   the user thinks this mutates Integers in the same way the String method
-#   `+=` mutates Strings?
-
-def sausage_factory(chicken, pork)
-  
-end
-# create a method that takes two arguments
-# pass a mutable object for the first argument, and then an immutable one
-# examine the objects with calls to puts
-# ask what output is and why, and what concept is being demonstrated
 ```
 
 # variable initialization & reassignment
 ```
-# create some variable and assign it some String
 name = "Will"
 person = name
 name = "Bill"
 
 puts name
 puts person
-# ask what output is wand why, and wht concept is being demonstrated
 ```
 
 # operator precedence and short-circuit evaluation
 ```
 
-# define some function that returns an expression
-# this expression consists of && and != operators and returns a truthy value
-# output some message based upon the truthiness of this value
-# ask what output is and why, and what concept is being demonstrated
+hungry = true
+bored = nil
+
+puts "Time to eat!" if hungry || bored
+
+daytime = true
+sunny = true
+mood = tired
+
+puts "Time to swim!" if daytime || sunny && mood != tired
+
 ```
 
-# strings and string type conversion
+# strings methods, mutation or assignment?
 ```
+name = "Will"
+nickname = name
 
-# define some String
-# convert it to an Integer
-# convert it to an array
-# ask what output is and why, and what concept is being demonstrated
+puts name + "iam"
+puts nickname
+
+puts name += "iam"
+puts nickname
+
+puts name << "Seipp"
+puts nickname.concat("iam Seipp")
+
 ```
 
 # puts and p with arrays
@@ -132,7 +121,6 @@ puts numbers
 print numbers
 p numbers
 
-# ask what output is and why, and what concept is being demonstrated
 
 ```
 
@@ -146,7 +134,6 @@ end
 todays_temp = rand(45)
 puts "It is #{convert_to_fahrenheit(todays_temp)} degrees fahrenheit today"
 
-# ask what output is and why, and what concept is being demonstrated
 ```
 
 # nil values in conditionals
@@ -157,7 +144,6 @@ if name
 else
   puts "name was falsey"
 end
-# ask what output is and why, and what concept is being demonstrated
 ```
 
 # does this string method mutate?
@@ -170,10 +156,21 @@ end
 greeting = "hello"
 puts greeting
 
-# ask what output is and why, and what concept is being demonstrated
 ```
 
-# mutating arguments in a method
-```
+# conditionals
 ```
 
+time_of_day = ["morning", "afternoon", "night"]
+current_time = time_of_day.sample
+
+case current_time
+when "morning"
+  puts "Time for coffee!"
+when "afternoon"
+  puts "Whelp, time to pick up the kiddos!"
+else
+  puts "Let's go to sleep ya monkeys!"
+end
+
+```
