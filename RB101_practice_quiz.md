@@ -29,49 +29,80 @@ even_numbers = all_numbers.select do |num|
 end
 
 puts even_numbers
+
 # ask what output is and why, and what concept is being demonstrated
 ```
 
 # truthiness vs boolean
 ```
-# use truthy values in a conditional
-# compare truthy value to boolean value in same conditional
+value = "red"
+
+if value == true
+  puts "twix"
+else
+  puts "skittles"
+end
+
 # ask what output is and why, and what concept is being demonstrated
 
 ```
 # variable scopes in blocks
 ```
-# initialize a variable to some String
-# create simple loop that executes once
-# within loop, pass value of variable to puts method
-# within loop, initialize some variable
-# attempt to pass value of variable in inner scope to puts method invocation
+
+name = "Will"
+
+loop do
+  first_name = name
+  puts first_name
+  break
+end
+
+puts first_name
+
 # ask what output is and why, and what concept is being demonstrated
 ```
 # method parameters vs arguments
 ```
-# create some variable
-# define a method that reassigns method parameter to a copy of argument
-# mutate copy of argument and return it; save it in a new variable
-# output the value of both variables with puts
+def tricky_method(param)
+  param = param += " world!"
+  param.upcase!
+end
+
+greeting = "hello"
+phrase = tricky_method(greeting)
+
+puts greeting
+puts phrase
+
 # ask what output is and why, and what concept is being demonstrated
 ```
 
 # pass by reference or pass by value?
 ```
 
-# create a method definition that attempts to mutate its argument
-# pass it an immutable value and output it with puts
-# pass the method a mutable value and output it with puts
+# how do we trick the user in thinking an immutable object has been mutated
+#   when no method exists for this? Do I use the `+=` operator and hope
+#   the user thinks this mutates Integers in the same way the String method
+#   `+=` mutates Strings?
+
+def sausage_factory(chicken, pork)
+  
+end
+# create a method that takes two arguments
+# pass a mutable object for the first argument, and then an immutable one
+# examine the objects with calls to puts
 # ask what output is and why, and what concept is being demonstrated
 ```
 
 # variable initialization & reassignment
 ```
 # create some variable and assign it some String
-# create another variable and assign it to the same String
-# reassign the first variable to another String
-# output the value of both variables by passing them to puts
+name = "Will"
+person = name
+name = "Bill"
+
+puts name
+puts person
 # ask what output is wand why, and wht concept is being demonstrated
 ```
 
@@ -96,9 +127,11 @@ puts even_numbers
 # puts and p with arrays
 
 ```
+numbers = [1, 2, 3]
+puts numbers
+print numbers
+p numbers
 
-# define some array of numbers
-# pass the array as an argument to puts, print, and p
 # ask what output is and why, and what concept is being demonstrated
 
 ```
@@ -106,23 +139,37 @@ puts even_numbers
 # numeric operators and operator precedence
 ```
 
-# initialize a variable with the value of some busy numeric expression
-# pass this value as an argument to puts
+def convert_to_fahrenheit(fahrenheit)
+  fahrenheit * 9 / 5 + 32
+end
+
+todays_temp = rand(45)
+puts "It is #{convert_to_fahrenheit(todays_temp)} degrees fahrenheit today"
+
 # ask what output is and why, and what concept is being demonstrated
 ```
 
 # nil values in conditionals
 ```
-# initialize a variable as nil
-# output some message based on the value of the variable
+name = nil
+if name
+  puts "name was truthy"
+else
+  puts "name was falsey"
+end
 # ask what output is and why, and what concept is being demonstrated
 ```
 
 # does this string method mutate?
 ```
-# initialize a variable and assign it to some String object
-# define some method and pass it the String object as an argument
-# perform several String methods with calls to puts in between them
+def formalize(phrase)
+  phrase = phrase.capitalize
+  phrase += " to you, good Sir"
+end
+
+greeting = "hello"
+puts greeting
+
 # ask what output is and why, and what concept is being demonstrated
 ```
 
