@@ -1,5 +1,5 @@
 
-{{{                             GIT
+{{{  GIT
 
 ## setup
 ## creating a repository
@@ -56,7 +56,7 @@ downloads from a remote, but doesnt commit those changes
 git fetch and git "fast-forward merge" in one command
 
 }}}
-{{{   VIM
+{{{  VIM
 
 ## search and replace
 
@@ -78,7 +78,7 @@ gqj
 
 and some other text
 }}}
-{{{ LUNARVIM
+{{{  LUNARVIM
 
 shortcut to edit config.lua
 <leader> Lc
@@ -86,7 +86,7 @@ shortcut to edit config.lua
 shortcut to search for text
 <leader> st
 }}}
-{{{ APT
+{{{  APT
 
 apt-get update
   gets updated package list for distro or 3rd party repos
@@ -96,7 +96,7 @@ apt-get update
 apt-get upgrade
 
 }}}
-{{{ MARKDOWN
+{{{  MARKDOWN
 
 ### this is a header of size 3
 **bold** and _italics_ are easy
@@ -129,7 +129,7 @@ of each line
 
 
 }}}
-{{{ PRY
+{{{  PRY
 
 ```ruby
 require 'pry'
@@ -157,7 +157,7 @@ profile_picture.settings.video_tab
 profile_picture.exit
 
 }}}
-{{{    PEDAC
+{{{  PEDAC
 
 PEDAC Template
 ==============
@@ -330,7 +330,7 @@ Code
 
 =end
 }}}
-{{{ YT-DLP
+{{{  tool X
 
 
 -x          convert video to audio-only files (requires ffmpege and ffprobe)
@@ -339,27 +339,30 @@ yt-dlp -x https://youtu.be/limlqTcg0R4
 
 
 }}}
-{{{
+{{{  tool X
+
+
+-x          convert video to audio-only files (requires ffmpege and ffprobe)
+yt-dlp -x https://youtu.be/limlqTcg0R4
+
+
 
 }}}
-{{{
+{{{  tool X
+
+
+-x          convert video to audio-only files (requires ffmpege and ffprobe)
+yt-dlp -x https://youtu.be/limlqTcg0R4
+
+
 
 }}}
-{{{
+{{{  tool X
 
-}}}
-{{{
 
-}}}
-{{{
+-x          convert video to audio-only files (requires ffmpege and ffprobe)
+yt-dlp -x https://youtu.be/limlqTcg0R4
 
-}}}
-{{{
 
-}}}
-{{{
-
-}}}
-{{{
 
 }}}

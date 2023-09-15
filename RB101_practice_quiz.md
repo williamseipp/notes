@@ -154,6 +154,7 @@ def formalize(phrase)
 end
 
 greeting = "hello"
+puts formalize(greeting)
 puts greeting
 
 ```
