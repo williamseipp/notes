@@ -51,6 +51,14 @@ Given a string, produce a new string with every other word removed.
 
 ## C: Implementing a solution in Code
 
+- Translating solution algorithm to code
+- Think about algorithm in context of programming language
+  - Language features and constraints
+  - Characteristics of data structure- Built in functions / methods
+  - Syntax and coding patterns
+- Create test cases
+- Code with intent
+
 ## Sum Even Number Rows
 
 Imagine a sequence of consecutive even integers beginning with 2. The integers
@@ -155,3 +163,9 @@ Algorithm:
 4. Repeat steps 2 & 3 until the array has reached the correct length
 5. Return the 'row' array
 
+## Final Thoughts
+
+- Not a complete linear process
+- Move back and forward between the steps
+- Switch from implementation mode to abstract problem solving mode when needed
+- Don't try to problem solve at the code level
