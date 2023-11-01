@@ -1,3 +1,6 @@
+{{{   RUBY 109
+
+
 # LANGUAGE
 # VARIABLES
 # CONDITIONALS
@@ -1671,3 +1674,134 @@ references is equal to `0`.
 
 }}}
 
+}}}
+{{{ RUBY 119
+
+* be familiar with Ruby syntax and operators
+
+in order to pass the written exam, go through the following topics
+and a) write about them and b) write code snippets demonstrating the topic
+
+{{{  Strings
+
+OPERATIONS 
+* indexing
+* slicing
+* negative indexes
+* assigning elements
+
+## METHODS
+# chars
+# concat
+# count
+# downcase and downcase!
+# freeze
+# include?
+# replace
+# reverse and reverse!
+# size
+# slice and slice!
+# split
+# strip and strip!
+# upcase and upcase!
+
+}}}
+{{{  Arrays 
+
+OPERATIONS 
+* indexing
+* slicing
+* negative indexes
+* assigning elements
+
+## METHODS
+# all?
+# any?
+# each
+# each_with_index
+# each_with_object
+# fetch
+# first
+# include?
+# join
+# last
+# map and map!
+# partition
+# pop
+# push
+# reverse and reverse!
+# select and select!
+# shift
+# slice and slice!
+# sort and sort!
+# unshift
+
+}}}
+{{{  Hashes
+
+OPERATIONS
+* indexing:
+* string keys:
+* symbol keys:
+
+## METHODS
+# all?
+# any?
+# each_key
+# each_value
+# empty?
+# include?
+# key
+# key?
+# keys
+# map
+# select and select!
+# value?
+# values
+
+}}}
+{{{  Integers
+
+METHODS
+# times
+}}}
+
+{{{  Iteration
+
+break
+next
+
+}}}
+
+{{{  nested data structures and nested iteration
+
+}}}
+
+{{{  shallow copy and deep copy
+
+}}}
+
+
+
+
+
+{{{  method chaining
+
+method chaining is when you combine methods together in a chain such that
+the return value of one method is the calling object for the method that
+immediately follows it to the right;
+
+```
+arr = ['a','b','c']
+arr.first.upcase!
+```
+
+`first` returns the first element of arr, which is the String `'a'`
+`upcase!` is called on this String object
+
+}}}
+selection and transformation?
+
+
+
+}}}
