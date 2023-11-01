@@ -1,5 +1,96 @@
 # The PEDAC Process
 
+{{{  my version of PEDAC
+
+Problem: parse all the information that is given and structure it to
+        understand the boundaries / rules of the problem. You also want to
+        express what you don't know / what is unclear. At the end you want to
+        have explicit and implicit requirements written and identify other
+        pieces of information ( i.e domain knowledge ) needed to solve the 
+        problem.
+
+Examples: Test your assertions from the "Problem" stage against the examples
+        given. Revise as needed.
+
+
+
+}}}
+
+
+{{{  WHY is it important?
+
+I have interviewed five software engineering candidates over the past two
+weeks, including folks with grad degrees in computer science/ex-FAANG with 7+
+years of
+experience. All five were jointly rejected by myself and a co-interviewer
+either because the candidates jumped straight into implementation and ended up
+with bugs
+during testing or unhandled edge cases, and/or their oral-written communication
+was poor.
+
+So, for those folks who are 'PEDACing' for the first few times:
+
+1) Train your problem solving muscles to start with PEDAC by default (or some
+equivalent thereof);
+
+2) Get comfortable talking through problems out loud, not just typing silently.
+
+Can't stress enough that PEDAC isn't an arbitrary heuristic meant for getting
+through the curriculum or 109/129 oral assessments. PEDAC works, especially
+under pressure.
+
+- Sam Swire (Check)
+
+}}}
+{{{  example
+
+=begin
+Check if a given string can be constructed by taking a substring of it and
+appending multiple copies of the substring together
+
+p repeated_substring_pattern("abab") == true
+p repeated_substring_pattern("aba") == false
+p repeated_substring_pattern("aabaaba") == false
+p repeated_substring_pattern("abaababaab") == true
+p repeated_substring_pattern("abcabcabcabc") == true
+
+
+P We want an answer, true or false, if the input string satisifies our
+condition.
+
+  Input: String
+  Output: Boolean
+
+  Condition: you can take a slice of the string and re-arrange it to recreate
+  the original input string
+
+E
+'abab' 'ab' + 'ab' =>
+
+D
+Input: String of letters
+Output: Boolean (based on if substring multiplied set amount of time equals
+self) Intermediate: Array of substrings/Substring (iterating over the argued
+string)
+Helper:
+
+A
+create a helper method of getting the factors of the length of the given string
+(we have to exclude the length of the string itself)
+- pass in an integer
+  - 1 to then length of the string
+  - return an array of integers, corresponding to the factors
+create an array substrings based on the factor numbers - create string slices
+  from index 0 with length of the factors For all the substrings, return true
+  only if at least one substring is valid - divide the length of given string
+  by the length of the substring and append the substring onto itself with that
+  number
+return false otherwise
+
+=end
+
+}}}
+
 ## P: Understanding the Problem
 
 - Establish the rules/ define the boundaries of the problem
