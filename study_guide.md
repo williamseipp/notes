@@ -1685,35 +1685,69 @@ and a) write about them and b) write code snippets demonstrating the topic
 {{{  Strings
 
 OPERATIONS 
-* indexing
-* slicing
-* negative indexes
-* assigning elements
+{{{  indexing: string[0] 
+    I can retrieve a substring by position within the calling String
+
+```
+name = ""will'
+name[0] #=> ""w'
+```
+
+}}}
+{{{  slicing: string[0, 3]
+
+I can retrieve a larger substring by providing both the starting position
+of the substring and the desired length
+
+```
+name = "will"
+name[0,2] # => "wi"
+```
+}}}
+
+{{{  negative indexes: string[-1]
+
+in the same way that positive indexes start from the first 'letter'
+and move to the right, negative indexes also start from the same position
+but move to the left
+
+```
+name = "will"
+name[-3] # => "i"
+```
+
+}}}
+{{{  assigning elements: string[0] = "B"
+
+referencing a String by index returns the substring at the given index; 
+assigning this to a new String is mutating
+
+```
+name = "will"
+name[0] = "b" # => "b"
+name            # => "bill"
+```
+}}}
 
 ## METHODS
-
-transform
-# chars
-# concat
-
-# downcase and downcase!   transformation
-# reverse and reverse!   transformation
-# strip and strip!   transformation
-# upcase and upcase!   transformation
-# replace   transformation
-# split   transformation
-
-selection
-# slice and slice!
-
-
-query
-# size
-# include?
-# count
-
-other
-# freeze
+# chars -> ARRAY
+# concat -> MUTATED SELF
+# count -> INTEGER
+# downcase -> new STRING
+# downcase! -> MUTATED SELF
+# upcase ->
+# upcase! ->
+# freeze ->
+# include? -> BOOLEAN, 
+# replace ->
+# reverse -> STRING that is a  q
+# reverse!
+# size -> INTEGER
+# slice -> STRING that is a substring of SELF
+# slice! -> MUTATED SELF
+# split -> ARRAY of strings split by delimeter
+# strip -> STRING with leading and trailing whitespace removed
+# strip! -> MUTATED SELF with leading and trailing whitespace removed
 
 }}}
 {{{  Arrays 
