@@ -1775,9 +1775,9 @@ OPERATIONS
 
 letters = ["a","b","c"]
 
-indexing                letters[1] #
-slicing                 letters[0,3]
-negative indexes        letters[-1]
+indexing                letters[1] #=> "b"
+slicing                 letters[0,3] #=> ["a","b","c"]
+negative indexes        letters[-1] #=> "c"
 assigning elements      letters[0] = "z"
 
 ## METHODS
@@ -1793,15 +1793,42 @@ letters = ["a","b","c"]
     letters.any? { |letter| letter == "a"}
 
 # each -> SELF
+    iterate through SELF, passing each element to a block
+
 # each_with_index -> SELF
+    iterate through SELF, passing each element to a block and its index
+
 # each_with_object -> OBJECT
-# fetch
-# first
+    iterate through SELF, passing each element and the given object to a block
+    
+# fetch -> ELEMENT
+    returns the element at offset index
+    letters.fetch(0) #=> "a"
+
+# first -> ELEMENT
+    returns first element of SELF
+    letters.fetch #=> "a"
+
 # include? -> BOOLEAN
-# join
-# last
+    if argument exists in SELF, returns TRUE; false otherwise
+    letters.include?("d")  #=> false
+
+# join -> STRING
+    returns the STRING that is formed by concatenating each element
+    letters.join        #=> "abc"
+
+# last -> ELEMENT
+    returns the last element of SELF
+    letters.last        #=> "c"
+
 # map -> ARRAY
+    returns a new array with the return values of the block
+    letters.map { |letter| letter.upcase }   #=> ["A","B","C"]
+
 # map! -> SELF
+    changes each element of SELF to the return values of the block; returns SELF
+    letters.map! { |letter| letter.upcase }   #=> ["A","B","C"]
+    
 # partition -> ARRAY
     divided = letters.partition { |letter| letter == "a" }
     divided # => [["a"],["b","c"]]
@@ -1845,8 +1872,18 @@ letters = ["a","b","c"]
     letters.slice!(0,1)     # => ["a"]
 
 # sort -> ARRAY
+    without a block; returns an array whose elements are from SELF, sorted
+    with a block; returns an array whose elements are from SELF, sorted using <=>
+    letters.shuffle
+    letters.sort    #=> ["a","b","c"]
+
 # sort! -> SELF(mutated)
-# unshift
+    returns SELF with elements sorted in place
+    letters.sort!    #=> ["a","b","c"]
+
+# unshift -> SELF(mutated)
+    prepends the given objects to SELF
+    letters.unshift("z")    #=> ["z","a","b","c"]
 
 }}}
 
