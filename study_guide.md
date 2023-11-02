@@ -1675,7 +1675,7 @@ references is equal to `0`.
 }}}
 
 }}}
-{{{ RUBY 119
+{{{   RUBY 119
 
 * be familiar with Ruby syntax and operators
 
@@ -1684,114 +1684,172 @@ and a) write about them and b) write code snippets demonstrating the topic
 
 {{{  Strings
 
+name = "will"
+
 OPERATIONS 
-{{{  indexing: string[0] 
-    I can retrieve a substring by position within the calling String
 
-```
-name = ""will'
-name[0] #=> ""w'
-```
+indexing: name[0] # => "w"
+I can retrieve a substring by position within the calling String
 
-}}}
-{{{  slicing: string[0, 3]
+
+slicing: name[0,2] # => "wi"
 
 I can retrieve a larger substring by providing both the starting position
 of the substring and the desired length
 
-```
-name = "will"
-name[0,2] # => "wi"
-```
-}}}
 
-{{{  negative indexes: string[-1]
+negative indexes: name[-3] # => "i"
 
 in the same way that positive indexes start from the first 'letter'
 and move to the right, negative indexes also start from the same position
 but move to the left
 
-```
-name = "will"
-name[-3] # => "i"
-```
 
-}}}
-{{{  assigning elements: string[0] = "B"
+assigning elements: name[0] = "B", name # => "Bill"
 
 referencing a String by index returns the substring at the given index; 
 assigning this to a new String is mutating
 
-```
-name = "will"
-name[0] = "b" # => "b"
-name            # => "bill"
-```
-}}}
-
 ## METHODS
+
+name = "will"
+
 # chars -> ARRAY
-# concat -> MUTATED SELF
+    name.chars      # => ["w","i","l","l"]
+
+# concat -> SELF(mutated)
+    name.concat("iam") #=> "william"
+
 # count -> INTEGER
-# downcase -> new STRING
-# downcase! -> MUTATED SELF
-# upcase ->
-# upcase! ->
-# freeze ->
-# include? -> BOOLEAN, 
-# replace ->
-# reverse -> STRING that is a  q
-# reverse!
+    name.count("l")  # => 2
+
+# downcase -> STRING
+    name.downcase     # => "will"
+
+# downcase! -> SELF(mutated)
+    name.downcase!   # => "will"
+
+# upcase -> STRING
+    name.upcase         # => "WILL"
+
+# upcase! -> SELF(mutated)
+    name.upcase!        # => "WILL"
+
+# freeze -> SELF
+    name.freeze          # => "will"
+
+# include? -> BOOLEAN
+    name.include?("W") # => false
+
+# replace ->  SELF(mutated)
+    name.replace("WILL") # => "WILL"
+
+# reverse -> STRING
+    name.reverse           # => "lliw"
+
+# reverse! -> SELF(mutated)
+    name.reverse!           # => "lliw"
+
 # size -> INTEGER
-# slice -> STRING that is a substring of SELF
-# slice! -> MUTATED SELF
-# split -> ARRAY of strings split by delimeter
-# strip -> STRING with leading and trailing whitespace removed
-# strip! -> MUTATED SELF with leading and trailing whitespace removed
+    name.size                 # => 4
+
+# slice -> STRING
+    name.slice(0,1)          # => "w"
+
+# slice! -> STRING
+    name.slice!(0,1)        # => "w" ( name mutated to "ill")
+
+# split -> ARRAY
+    name.split("i")          # => ["w", "ll"]
+
+# strip -> STRING
+    name.strip               # => "will"
+
+# strip! -> SELF or NIL ( NIL if no modifications are made )
+    name.strip!             # => "will"
 
 }}}
 {{{  Arrays 
 
 OPERATIONS 
-* indexing
-* slicing
-* negative indexes
-* assigning elements
+
+letters = ["a","b","c"]
+
+indexing                letters[1] #
+slicing                 letters[0,3]
+negative indexes        letters[-1]
+assigning elements      letters[0] = "z"
 
 ## METHODS
 
-query
-# all?
-# any?
-# include?
+letters = ["a","b","c"]
 
-other
-# each
-# each_with_index
-# each_with_object
+# all? -> BOOLEAN
+    does the block return TRUE for all elements?
+    letters.all? { |letter| letter.size == 1 }
 
-selection
+# any? -> BOOLEAN
+    does the block return TRUE for at least one element?
+    letters.any? { |letter| letter == "a"}
+
+# each -> SELF
+# each_with_index -> SELF
+# each_with_object -> OBJECT
 # fetch
 # first
-# last
-# select
-# slice
-
-transformation
+# include? -> BOOLEAN
 # join
-# map and map!
-# partition
-# pop
-# push
-# shift
+# last
+# map -> ARRAY
+# map! -> SELF
+# partition -> ARRAY
+    divided = letters.partition { |letter| letter == "a" }
+    divided # => [["a"],["b","c"]]
+
+# pop -> ELEMENT
+    removes and returns LAST element
+    letters.pop     # => "c"
+    letters         # => ["a","b"]
+
+# push -> SELF
+    appends argument to end of SELF; returns SELF
+    letters.push("d") # => ["a","b","c","d"]
+
+# reverse -> ARRAY
+    letters.reverse # => ["c","b","a"]
+
+# reverse! -> SELF
+    letters.reverse! # => ["c","b","a"]
+
+# select -> ARRAY
+    return an array of elements for which the block returns TRUE
+    think of it as "subset"
+    letters.select { |letter| letter == "a" }   # => ["a"]
+
+# select!   changes SELF to the defined sub-set defined
+    letters.select! { |letter| letter == "a" }   # => ["a"]
+    letters                             # => ["a"]
+# shift -> ELEMENT(s)
+    removes and returns leading elements
+    letters.shift(2)        # => ["a","b"]
+    letters                 # => ["c"]
+# slice -> ELEMENT, or ELEMENTs
+    when a single integer index argument is provided, returns the element
+    when two integer arguments are provided, returns an ARRAY with element(s)
+    letters.slice(0)        # => "a"
+    letters.slice(0, 1)     # => ["a"]
+
+# slice! -> returns sub-ARRAY removed from SELF; similar to pop
+    returns an element or array, depending on number of arguments
+    letters.slice!(0)       # => "a"
+    letters.slice!(0,1)     # => ["a"]
+
+# sort -> ARRAY
+# sort! -> SELF(mutated)
 # unshift
-# reverse and reverse!
-# select!
-# slice!
-# sort
-# sort!
 
 }}}
+
 {{{  Hashes
 
 OPERATIONS
