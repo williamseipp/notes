@@ -1691,19 +1691,29 @@ OPERATIONS
 * assigning elements
 
 ## METHODS
+
+transform
 # chars
 # concat
-# count
-# downcase and downcase!
-# freeze
-# include?
-# replace
-# reverse and reverse!
-# size
+
+# downcase and downcase!   transformation
+# reverse and reverse!   transformation
+# strip and strip!   transformation
+# upcase and upcase!   transformation
+# replace   transformation
+# split   transformation
+
+selection
 # slice and slice!
-# split
-# strip and strip!
-# upcase and upcase!
+
+
+query
+# size
+# include?
+# count
+
+other
+# freeze
 
 }}}
 {{{  Arrays 
@@ -1715,26 +1725,37 @@ OPERATIONS
 * assigning elements
 
 ## METHODS
+
+query
 # all?
 # any?
+# include?
+
+other
 # each
 # each_with_index
 # each_with_object
+
+selection
 # fetch
 # first
-# include?
-# join
 # last
+# select
+# slice
+
+transformation
+# join
 # map and map!
 # partition
 # pop
 # push
-# reverse and reverse!
-# select and select!
 # shift
-# slice and slice!
-# sort and sort!
 # unshift
+# reverse and reverse!
+# select!
+# slice!
+# sort
+# sort!
 
 }}}
 {{{  Hashes
@@ -1747,10 +1768,12 @@ OPERATIONS
 ## METHODS
 # all?
 # any?
-# each_key
-# each_value
 # empty?
 # include?
+
+
+# each_key
+# each_value
 # key
 # key?
 # keys
