@@ -1890,26 +1890,75 @@ letters = ["a","b","c"]
 {{{  Hashes
 
 OPERATIONS
-* indexing:
-* string keys:
-* symbol keys:
+
+person = { name: "Alice", age: 28 }
+
+indexing:
+
+string keys: remember that a `=>` is necessary when creating hash 
+    person["name"]
+ 
+symbol keys: remember that `symbol:` is shorthand, symbols start with `:`
+    person[:name]    
 
 ## METHODS
-# all?
-# any?
-# empty?
-# include?
+# all? -> BOOLEAN
+    does the block return true for all elements?
+    person.all? { |key, value | value.is_a?(String) } #=> false
 
+# any? -> BOOLEAN
+    does the block return true for at least one element?
+    person.any?
 
-# each_key
-# each_value
-# key
-# key?
-# keys
-# map
-# select and select!
-# value?
-# values
+# empty? -> BOOLEAN
+    is hash empty
+    person.empty? #=> false
+
+# include? -> BOOLEAN
+    returns true if key is a key in SELF; false otherwise
+    person.include?(:name)      #=> true
+
+# each_key -> SELF
+    calls the given block with each key, returns SELF
+    person.each_key {|key| puts key } #=>  { name: "Alice", age: 28 }
+    
+# each_value -> SELF
+    calls the given block with each value, returns SELF
+    person.each_value {|value| puts value } #=>  { name: "Alice", age: 28 }
+
+# key -> KEY / NIL
+    returns the first key found in SELF with the given value, NIL if not found
+    person.key("Alice") #=> :name
+
+# key? -> BOOLEAN
+    returns true if key is a key in SELF; false otherwise
+    alias for include? 
+    person.key?(:name)      #=> true
+
+# keys -> ARRAY
+    returns all keys of SELF in an array
+    person.keys     #=> [:name, :age]
+
+# map -> ARRAY
+    returns an array of objects returned by the block
+    person.map { |key, value| value * 2} #=> ["AliceAlice", 56]
+
+# select -> HASH
+    returns a new hash of entries for which the block returns a truthy value
+    person.select {|key,value| value.is_a?(Integer)} #=> {:age => 28}
+
+# select! -> SELF(mutated) / NIL
+    returns SELF, whose entries are for which the block returns a truthy value
+    returns NIL if no modifications are made to SELF
+    person.select! {|key,value| value.is_a?(Integer)} #=> {:age => 28}
+    
+# value? -> BOOLEAN
+    returns true if value is a value in SELF; false otherwise
+    person.value?("Alice") #=> true
+
+# values -> ARRAY
+    returns an array containing all values in SELF
+    person.values   #=> ["Alice", 28]
 
 }}}
 {{{  Integers
