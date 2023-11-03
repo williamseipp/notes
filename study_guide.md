@@ -1886,7 +1886,6 @@ letters = ["a","b","c"]
     letters.unshift("z")    #=> ["z","a","b","c"]
 
 }}}
-
 {{{  Hashes
 
 OPERATIONS
@@ -1964,7 +1963,9 @@ symbol keys: remember that `symbol:` is shorthand, symbols start with `:`
 {{{  Integers
 
 METHODS
-# times
+
+# times: calls the given block SELF times with each integer in 0..SELF -1
+    4.times { |num| puts num }
 }}}
 
 {{{  Iteration
