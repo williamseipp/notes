@@ -1898,6 +1898,10 @@ symbol keys: remember that `symbol:` is shorthand, symbols start with `:`
     returns true if key is a key in SELF; false otherwise
     person.include?(:name)      #=> true
 
+# each -> SELF
+    calls the given block with each key and value, returns SELF
+    person.each { |key,value| puts "#{key} and #{value}"}
+
 # each_key -> SELF
     calls the given block with each key, returns SELF
     person.each_key {|key| puts key } #=>  { name: "Alice", age: 28 }
