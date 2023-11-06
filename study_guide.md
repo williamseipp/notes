@@ -1686,16 +1686,12 @@ and a) write about them and b) write code snippets demonstrating the topic
 
 name = "will"
 
-OPERATIONS 
-
 indexing: name[0] # => "w"
-I can retrieve a substring by position within the calling String
+I can select substrings of a string by providing an index `0`
 
 
 slicing: name[0,2] # => "wi"
-
-I can retrieve a larger substring by providing both the starting position
-of the substring and the desired length
+or by providing both an index `0` and the desired length of the substring `2`
 
 
 negative indexes: name[-3] # => "i"
@@ -1711,6 +1707,9 @@ referencing a String by index returns the substring at the given index;
 assigning this to a new String is mutating
 
 ## METHODS
+# querying: size, count, include?
+# selection: [], slice 
+# transformation: downcase, upcase, chars, concat,  replace, reverse, split, strip 
 
 name = "will"
 
@@ -1771,8 +1770,6 @@ name = "will"
 }}}
 {{{  Arrays 
 
-OPERATIONS 
-
 letters = ["a","b","c"]
 
 indexing                letters[1] #=> "b"
@@ -1780,9 +1777,9 @@ slicing                 letters[0,3] #=> ["a","b","c"]
 negative indexes        letters[-1] #=> "c"
 assigning elements      letters[0] = "z"
 
-## METHODS
-
-letters = ["a","b","c"]
+# querying: all? any? include?
+# selection: fetch, first, last, slice, select
+# transformation: join, reverse, shift, pop, push, map, partition, sort, unshift
 
 # all? -> BOOLEAN
     does the block return TRUE for all elements?
@@ -1888,11 +1885,9 @@ letters = ["a","b","c"]
 }}}
 {{{  Hashes
 
-OPERATIONS
-
 person = { name: "Alice", age: 28 }
 
-indexing:
+Indexing with...
 
 string keys: remember that a `=>` is necessary when creating hash 
     person["name"]
@@ -1900,7 +1895,6 @@ string keys: remember that a `=>` is necessary when creating hash
 symbol keys: remember that `symbol:` is shorthand, symbols start with `:`
     person[:name]    
 
-## METHODS
 # all? -> BOOLEAN
     does the block return true for all elements?
     person.all? { |key, value | value.is_a?(String) } #=> false
@@ -1967,26 +1961,42 @@ METHODS
 # times: calls the given block SELF times with each integer in 0..SELF -1
     4.times { |num| puts num }
 }}}
-
 {{{  Iteration
 
-break
-next
+iteration is the process of accessing every element of a collection
+you can do this with a collection method such as `each` or `map` or you
+can do this manually by creating a loop with an index that increments,
+allowing traversal through the collection
+
+break: exits the nearest loop
+next: skips the rest of the current iteration and move onto the next one
 
 }}}
-
-{{{  nested data structures and nested iteration
-
-}}}
-
 {{{  shallow copy and deep copy
+    
+    both #dup and #clone create a "shallow copy" of a collection.
+    The collections are separate, but share references to the same objects.
+    If you iterate through one and have the elements make calls to mutating
+    methods, both objects will be changed.
+
+    The proper way of making changes to the copy is by calling a mutating
+    method on the collection (#map!) instead of the individual elements that
+    are common to both.
+
+```
+original = ['a','b','c']
+copy = original.dup
+
+copy.map! { |letter| letter.upcase }
+print(*original)    # => abc
+print(*copy)        # => ABC
+```
+
+The difference between #dup and #clone is that #clone will preserve the frozen
+state of the original. That is, if the original is frozen, your copy will also
+be frozen if you use #clone to create the copy.
 
 }}}
-
-
-
-
-
 {{{  method chaining
 
 method chaining is when you combine methods together in a chain such that
@@ -2002,8 +2012,9 @@ arr.first.upcase!
 `upcase!` is called on this String object
 
 }}}
-selection and transformation?
 
+{{{  nested data structures and nested iteration
 
+}}}
 
 }}}
