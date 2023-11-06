@@ -1999,9 +1999,15 @@ arr.first.upcase!
 `upcase!` is called on this String object
 
 }}}
-
 {{{  nested data structures and nested iteration
 
+    arr = [[1,3], [2]]
+    arr[0][1] = 5
+    # => [[1,5], [2]]
+
+    arr.each do |array|
+      array.each { |number| puts number }
+    end
 }}}
 
 {{{  PRACTICE PROBLEMS
