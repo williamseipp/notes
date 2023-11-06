@@ -1687,20 +1687,8 @@ and a) write about them and b) write code snippets demonstrating the topic
 name = "will"
 
 indexing: name[0] # => "w"
-I can select substrings of a string by providing an index `0`
-
-
 slicing: name[0,2] # => "wi"
-or by providing both an index `0` and the desired length of the substring `2`
-
-
 negative indexes: name[-3] # => "i"
-
-in the same way that positive indexes start from the first 'letter'
-and move to the right, negative indexes also start from the same position
-but move to the left
-
-
 assigning elements: name[0] = "B", name # => "Bill"
 
 referencing a String by index returns the substring at the given index; 
@@ -1887,13 +1875,12 @@ assigning elements      letters[0] = "z"
 
 person = { name: "Alice", age: 28 }
 
-Indexing with...
-
 string keys: remember that a `=>` is necessary when creating hash 
-    person["name"]
- 
 symbol keys: remember that `symbol:` is shorthand, symbols start with `:`
-    person[:name]    
+
+# querying: all? any? empty? include? key? value?
+# selection: select
+# transformation: map
 
 # all? -> BOOLEAN
     does the block return true for all elements?
