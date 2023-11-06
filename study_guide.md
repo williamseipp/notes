@@ -2014,6 +2014,43 @@ arr.first.upcase!
     end
 }}}
 
+{{{  sorting
+
+    We can compare two values OF THE SAME TYPE with the
+    `<=>` operator. It will return -1,0,1 depending on
+    which object is less than the other. However, if the two
+    objects are of different types, then NIL will be returned
+    instead.
+
+```
+1 <=> 2     # => -1
+2 <=> 1     # => 1
+1 <=> 1     # => 0
+1 <=> 'a'   # => nil
+```
+
+    If we attempt to sort a collection of different types, an exception
+    will be thrown when the objects of different types are compared.
+
+strings are sorted by ASCII values
+
+    ["a", "A", "!"].sort # => ["!", "A", "a"]
+
+when strings are equivalent, the shorter one comes first
+
+    ['arc', 'bat', 'cape', 'ants', 'cap'].sort
+    # => ["ants", "arc", "bat", "cap", "cape"]
+
+we can also define our own criteria for sorting by passing a block
+
+    [2,5,3,4,1].sort do |a,b|
+      b <=> a
+    end
+    # => [5,4,3,2,1]
+
+}}}
+
+
 {{{  PRACTICE PROBLEMS
 
 arr1 = ["a", "b", "c"]
