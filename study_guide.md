@@ -1675,7 +1675,7 @@ references is equal to `0`.
 }}}
 
 }}}
-{{{   RUBY 119
+{{{   RUBY 119 written
 
 * be familiar with Ruby syntax and operators
 
@@ -2026,6 +2026,34 @@ end
 puts arr1 
 puts arr2
 }}}
+
+
+}}}
+{{{   RUBY 119 interview
+
+be able to:
+
+work with arrays and hashes
+iterate over an array, string, or hash values
+* precise control over iteration flow; can you use `break` and `next`?
+* manipulate arrays and hashes.
+    can you reverse an array without using `Array#reverse`?
+    can you select an element out of an array if its index is a fib number?
+    write a method that removes every other element out of an array
+
+DONT "let me just run it and see what it will do"
+
+tangible steps ( PEDAC )
+
+# BLUEPRINT
+SLOWLY read the problem. 
+Re-write the problem into a series of simpler statements
+- point 1
+- point 2
+- input
+- output
+
+
 
 
 }}}
