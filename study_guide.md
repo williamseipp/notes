@@ -1687,20 +1687,8 @@ and a) write about them and b) write code snippets demonstrating the topic
 name = "will"
 
 indexing: name[0] # => "w"
-I can select substrings of a string by providing an index `0`
-
-
 slicing: name[0,2] # => "wi"
-or by providing both an index `0` and the desired length of the substring `2`
-
-
 negative indexes: name[-3] # => "i"
-
-in the same way that positive indexes start from the first 'letter'
-and move to the right, negative indexes also start from the same position
-but move to the left
-
-
 assigning elements: name[0] = "B", name # => "Bill"
 
 referencing a String by index returns the substring at the given index; 
@@ -1887,13 +1875,12 @@ assigning elements      letters[0] = "z"
 
 person = { name: "Alice", age: 28 }
 
-Indexing with...
-
 string keys: remember that a `=>` is necessary when creating hash 
-    person["name"]
- 
 symbol keys: remember that `symbol:` is shorthand, symbols start with `:`
-    person[:name]    
+
+# querying: all? any? empty? include? key? value?
+# selection: select
+# transformation: map
 
 # all? -> BOOLEAN
     does the block return true for all elements?
@@ -1910,6 +1897,10 @@ symbol keys: remember that `symbol:` is shorthand, symbols start with `:`
 # include? -> BOOLEAN
     returns true if key is a key in SELF; false otherwise
     person.include?(:name)      #=> true
+
+# each -> SELF
+    calls the given block with each key and value, returns SELF
+    person.each { |key,value| puts "#{key} and #{value}"}
 
 # each_key -> SELF
     calls the given block with each key, returns SELF
@@ -2012,10 +2003,53 @@ arr.first.upcase!
 `upcase!` is called on this String object
 
 }}}
-
 {{{  nested data structures and nested iteration
 
+    arr = [[1,3], [2]]
+    arr[0][1] = 5
+    # => [[1,5], [2]]
+
+    arr.each do |array|
+      array.each { |number| puts number }
+    end
 }}}
+
+{{{  sorting
+
+    We can compare two values OF THE SAME TYPE with the
+    `<=>` operator. It will return -1,0,1 depending on
+    which object is less than the other. However, if the two
+    objects are of different types, then NIL will be returned
+    instead.
+
+```
+1 <=> 2     # => -1
+2 <=> 1     # => 1
+1 <=> 1     # => 0
+1 <=> 'a'   # => nil
+```
+
+    If we attempt to sort a collection of different types, an exception
+    will be thrown when the objects of different types are compared.
+
+strings are sorted by ASCII values
+
+    ["a", "A", "!"].sort # => ["!", "A", "a"]
+
+when strings are equivalent, the shorter one comes first
+
+    ['arc', 'bat', 'cape', 'ants', 'cap'].sort
+    # => ["ants", "arc", "bat", "cap", "cape"]
+
+we can also define our own criteria for sorting by passing a block
+
+    [2,5,3,4,1].sort do |a,b|
+      b <=> a
+    end
+    # => [5,4,3,2,1]
+
+}}}
+
 
 {{{  PRACTICE PROBLEMS
 
