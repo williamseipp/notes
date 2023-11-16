@@ -2075,6 +2075,40 @@ iterate over an array, string, or hash values
     can you select an element out of an array if its index is a fib number?
     write a method that removes every other element out of an array
 
+{{{ reverse an array without using #reverse
+
+# method1: use #sort but pass a block with block parameters in reverse order (b,a)
+    p arr.sort {|a,b| b <=> a }
+# method2: iterate backwards through the array and fill returned array iteratively
+    new_arr = []
+    arr = [1, 2, 3]
+    # -1, -2, -3
+    index = -1
+    loop do
+      new_arr << arr[index]
+      break if index.abs == arr.size
+      index -= 1
+    end
+
+# method3: if I'm allowed to mutate the argument, #pop elements of the argument
+    new_arr = []
+    arr.size.times { new_arr << arr.pop }
+}}}
+{{{ select an element out of an array if its index is a fib number?
+    fib_10 = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+    arr = [10, 4, 5, 2, 21, 1]
+    p arr.select { |number| fib_10.include?(number) }
+}}}
+{{{ write a method that removes every other element out of an array
+
+    fib_10 = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+
+    fib_10.select!.with_index do |number, index|
+      index.even?
+    end
+}}}
+
+
 DONT "let me just run it and see what it will do"
 
 tangible steps ( PEDAC )

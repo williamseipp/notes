@@ -7,10 +7,6 @@
 
 #   The tests contain some very huge arrays, so think about performance.
 
-describe "Solution" do
-  it "should test for something" do
-    Test.assert_equals(find_uniq([1,1,1,1,0]), 0)
-    Test.assert_equals(find_uniq([ 1, 1, 1, 2, 1, 1 ]), 2);
-    Test.assert_equals(find_uniq([ 0, 0, 0.55, 0, 0 ]), 0.55);
-  end
-end
+p find_uniq([1, 1, 1, 1, 0]) == 0
+p find_uniq([1, 1, 1, 2, 1, 1]) ==  2
+p find_uniq([0, 0, 0.55, 0, 0]) ==  0.55

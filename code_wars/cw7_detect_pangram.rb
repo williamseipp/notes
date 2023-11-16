@@ -8,11 +8,27 @@
 # Return True if it is, False if not. Ignore numbers and
 # punctuation.
 
-describe "Pangram" do
-  it "Check if string is a Pangram" do
-    # "The quick brown fox jumps over the lazy dog."
-    expect(pangram?("The quick brown fox jumps over the lazy dog.")).to eq(true)
-    # "This is not a pangram."
-    expect(pangram?("This is not a pangram.")).to eq(false)
-  end
+# is every letter of the alphabet included in sentence?
+# problem: test if one set of data includes every element of another set
+#
+# input: string
+# output: true or false
+#
+# example: that phrase
+#
+# data: array or string that contains every letter of alphabet
+#       that we can compare letters of input to
+#
+#  is every letter of alphabet included in sentence?
+#  iterate through alphabet
+#   if letter isnt included in sentence, return false
+#   if it is, go to next letter
+#   return true if you've iterated through all letters of the alphabet
+#      ( and a false value wasnt found )
+
+def pangram?(sentence)
+  alphabet = 'abcdefghijklmnopqrstuvwxyz'
+  alphabet.each_char.all? { |letter| sentence.include?(letter) }
 end
+p pangram?('The quick brown fox jumps over the lazy dog.') == true
+p pangram?('This is not a pangram.') == false

@@ -8,7 +8,14 @@
 # or digits will be included. Performance needs to be
 # considered.
 
-scramble('rkqodlw', 'world') ==> True
-scramble('cedewaraaossoqqyt', 'codewars') ==> True
-scramble('katas', 'steak') ==> False
+# input: string1, string2
+# output: true or false
+#
+# are all the characters of string2 inside string1?
 
+def scramble(string1, string2)
+  string2.each_char.all? { |letter| string1.include?(letter) }
+end
+p scramble('rkqodlw', 'world') == true
+p scramble('cedewaraaossoqqyt', 'codewars') == true
+p scramble('katas', 'steak') == false
