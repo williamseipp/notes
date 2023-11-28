@@ -56,27 +56,28 @@ downloads from a remote, but doesnt commit those changes
 git fetch and git "fast-forward merge" in one command
 
 }}}
-{{{  VIM
+{{{  LUNARVIM
 
 ## search and replace
 
-:%s/foo/bar/g
+    :%s/foo/bar/g
 
 ## search for word under cursor
 
-* in normal mode
+    * in normal mode
 
 ## word wrap
 
-gqj
+    gqj
 
-## folding
+## toggle fold
 
-`za` to close fold
-{{{     hello world     
-}}}
+    CTRL-F
 
-and some other text
+## look up documentation
+
+    K in normal mode
+
 }}}
 {{{  LUNARVIM
 
@@ -330,11 +331,54 @@ Code
 
 =end
 }}}
-{{{  tool X
+{{{  YT-DLP
 
 
 -x          convert video to audio-only files (requires ffmpege and ffprobe)
 yt-dlp -x https://youtu.be/limlqTcg0R4
+
+
+
+}}}
+{{{  LINUX
+
+which version of linux kernel am I running?
+
+    uname -a
+
+which version of linux distro am I running?
+
+    lsb_release -r
+
+
+}}}
+{{{  RUBY
+
+
+{{{ String#capitalize
+------------------------------------------------------------------------
+  capitalize(*options) -> string
+------------------------------------------------------------------------
+
+Returns a string containing the characters in self; the first character
+is upcased; the remaining characters are downcased:
+
+  s = 'hello World!' # => "hello World!"
+  s.capitalize       # => "Hello world!"
+
+The casing may be affected by the given options; see {Case
+Mapping}[rdoc-ref:case_mapping.rdoc].
+
+Related: String#capitalize!.
+
+}}}
+
+{{{  creating repeating characters of arbitrary size
+```ruby
+" " * 10
+```
+}}}
+
 
 
 
@@ -348,21 +392,4 @@ yt-dlp -x https://youtu.be/limlqTcg0R4
 
 
 }}}
-{{{  tool X
 
-
--x          convert video to audio-only files (requires ffmpege and ffprobe)
-yt-dlp -x https://youtu.be/limlqTcg0R4
-
-
-
-}}}
-{{{  tool X
-
-
--x          convert video to audio-only files (requires ffmpege and ffprobe)
-yt-dlp -x https://youtu.be/limlqTcg0R4
-
-
-
-}}}
