@@ -50,6 +50,11 @@ end
 }}}
 {{{  Inheritance baby!
 
+  protected methods cannot be invoked outside the class definition
+    but can be invoked by methods of other objects
+
+  when you choose method names, make sure the name doesn't
+  belong to the class `Object` ( instance_of? send )
 }}}
 {{{  section
 
@@ -125,6 +130,33 @@ end
 * create a module such that the following creates an object:
   `Transportation::Truck.new`
 
+{{{    Daisy says moooooo   ( great example, study THIS!!)
+
+```ruby
+class Animal
+  def initialize(name)
+    @name = name
+  end
+
+  def speak
+    puts sound
+  end
+
+  def sound
+    "#{@name} says "
+  end
+end
+
+class Cow < Animal
+  def sound
+    super + "moooooooooooo!"
+  end
+end
+
+daisy = Cow.new("Daisy")
+daisy.speak     # => Daisy says moooooooooooo!
+```
+}}}
 
 
 }}}
@@ -141,6 +173,123 @@ end
 
 }}}
 
+# Polymorphism
+
+{{{   inheritance 
+
+```ruby
+class Animal
+  def move
+  end
+end
+
+class Fish < Animal
+  def move
+    puts "swim"
+  end
+end
+
+class Cat < Animal
+  def move
+    puts "walk"
+  end
+end
+
+# Sponges and Corals don't have a separate move method - they don't move
+class Sponge < Animal; end
+class Coral < Animal; end
+
+animals = [Fish.new, Cat.new, Sponge.new, Coral.new]
+animals.each { |animal| animal.move }
+```
+}}}
+{{{   duck typing: wedding
+
+```ruby
+class Wedding
+  attr_reader :guests, :flowers, :songs
+
+  def prepare(preparers)
+    preparers.each do |preparer|
+      # case preparer
+      # when Chef
+      #   preparer.prepare_food(guests)
+      # when Decorator
+      #   preparer.decorate_place(flowers)
+      # when Musician
+      #   preparer.prepare_performance(songs)
+      # end
+      preparer.prepare_wedding(self)
+    end
+  end
+end
+
+class Chef
+  def prepare_wedding(wedding)
+    def prepare_food(wedding.guests)
+  end
+
+  def prepare_food(guests)
+    # implementation
+  end
+end
+
+class Decorator
+  def prepare_wedding(wedding)
+    decorate_place(wedding.flowers)
+  end
+
+  def decorate_place(flowers)
+    # implementation
+  end
+end
+
+class Musician
+  def prepare_wedding(wedding)
+    prepare_performance(wedding.songs)
+  end
+
+  def prepare_performance(songs)
+    #implementation
+  end
+end
+
+our_weddding = Wedding.new
+
+
+```
+}}}
+{{{  this isnt Polymorphism
+```ruby
+class Circle
+  def draw; end
+end
+
+class Blinds
+  def draw; end
+end
+```
+}}}
+
+# Collaborator objects
+
+{{{  example1: joe and his bulldog bud 
+
+```ruby
+class Person
+  attr_accessor :name, :pet
+
+  def initialize(name)
+    @name = name
+  end
+end
+
+bob = Person.new("Robert")
+bud = Bulldog.new             # assume Bulldog class from previous assignment
+
+bob.pet = bud    # bud is a "collaborator object"
+```
+}}}
 # Easy1
 {{{   complete this class 'banner' to create the desired output
 ```ruby

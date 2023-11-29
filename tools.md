@@ -5,6 +5,7 @@
 ## creating a repository
 ## tracking change
 ## configure name, email, credentials
+## commit messages
 
 
 ## setup
@@ -55,8 +56,26 @@ downloads from a remote, but doesnt commit those changes
 `git pull --ff-only`
 git fetch and git "fast-forward merge" in one command
 
+## commit messages
+
+Good
+
+    feat: improve performance with lazy load implementation for images
+    chore: update npm dependency to latest version
+    Fix bug preventing users from submitting the subscribe form
+    Update incorrect client phone number within footer body per client request
+
+Bad
+
+    fixed bug on landing page
+    Changed style
+    oops
+    I think I fixed it this time?
+    empty commit messages
+
+
 }}}
-{{{  LUNARVIM
+{{{  VIM
 
 ## search and replace
 
@@ -77,6 +96,11 @@ git fetch and git "fast-forward merge" in one command
 ## look up documentation
 
     K in normal mode
+
+## marks
+
+    mj to create a mark
+    J to cycle between marks
 
 }}}
 {{{  LUNARVIM
