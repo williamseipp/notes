@@ -105,11 +105,11 @@ Bad
 }}}
 {{{  LUNARVIM
 
-shortcut to edit config.lua
-<leader> Lc
+# shortcut to edit config.lua
+    <leader> Lc
 
-shortcut to search for text
-<leader> st
+# shortcut to search for text
+    <leader> st
 }}}
 {{{  APT
 
